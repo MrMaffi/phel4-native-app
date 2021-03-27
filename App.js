@@ -9,11 +9,8 @@ import {
   Nunito_700Bold,
 } from '@expo-google-fonts/nunito';
 
-import AppButton from './app/components/AppButton';
-import AppTextInput from './app/components/AppTextInput';
-import AppTitle from './app/components/AppTitle';
-
 import colors from './app/config/colors';
+import Register from './app/screens/Register';
 
 export default function App() {
   let [fontsLoaded] = useFonts({
@@ -28,15 +25,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <AppTitle style={{ marginBottom: 60 }}>Welcome to phel4</AppTitle>
-      <AppTextInput icon="email" placeholder="E-mail" />
-      <AppButton
-        style={{ marginTop: 35 }}
-        onPress={() => {
-          console.log('Tapped');
-        }}
-        title="Click me"
-      />
+      <Register />
       <StatusBar style="auto" />
     </View>
   );
