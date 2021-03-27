@@ -9,7 +9,7 @@ import {
   Nunito_700Bold,
 } from '@expo-google-fonts/nunito';
 
-import AppText from './app/components/AppText';
+import AppButton from './app/components/AppButton';
 import AppTextInput from './app/components/AppTextInput';
 
 import colors from './app/config/colors';
@@ -27,30 +27,13 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <AppText style={{ fontFamily: 'Nunito_600SemiBold' }}>
-        Welcome ot Phel4
-      </AppText>
-      <AppTextInput
-        autoCapitalize="none"
-        autoCorrect={false}
-        icon="email"
-        keyboardType="email-address"
-        placeholder="E-mail"
-        textContentType="emailAddress"
-      />
-      <AppTextInput
-        autoCapitalize="none"
-        autoCorrect={false}
-        icon="lock"
-        placeholder="Password"
-        secureTextEntry
-        textContentType="password"
-      />
-      <AppTextInput
-        autoCapitalize="none"
-        autoCorrect={false}
-        keyboardType="numeric"
-        placeholder="Code from e-mail"
+      <AppTextInput placeholder="Code from e-mail" />
+      <AppButton
+        style={{ marginTop: 35 }}
+        title="Confirm"
+        onPress={() => {
+          console.log('Tapped');
+        }}
       />
       <StatusBar style="auto" />
     </View>
