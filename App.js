@@ -9,8 +9,9 @@ import {
   Nunito_700Bold,
 } from '@expo-google-fonts/nunito';
 
-import colors from './app/config/colors';
 import Register from './app/screens/Register';
+
+import colors from './app/config/colors';
 
 export default function App() {
   let [fontsLoaded] = useFonts({
