@@ -27,10 +27,11 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <AppTextInput placeholder="Code from e-mail" />
+      <AppTextInput icon="email" placeholder="E-mail" />
+      <AppTextInput icon="lock" placeholder="Password" />
       <AppButton
         style={{ marginTop: 35 }}
-        title="Confirm"
+        title="Log in"
         onPress={() => {
           console.log('Tapped');
         }}

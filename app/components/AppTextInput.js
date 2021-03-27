@@ -10,7 +10,7 @@ export default function AppTextInput({ icon, style, ...otherProps }) {
       <View style={styles.background} />
       <View style={styles.container}>
         {icon && (
-          <MaterialCommunityIcons name={icon} size={22} style={styles.icon} />
+          <MaterialCommunityIcons name={icon} size={20} style={styles.icon} />
         )}
         <TextInput
           clearButtonMode="always"
@@ -53,5 +53,6 @@ const styles = StyleSheet.create({
   input: {
     flex: 1,
     ...defaultStyles.text,
+    fontSize: 18,
   },
 });
