@@ -11,6 +11,7 @@ import {
 
 import AppButton from './app/components/AppButton';
 import AppTextInput from './app/components/AppTextInput';
+import AppTitle from './app/components/AppTitle';
 
 import colors from './app/config/colors';
 
@@ -27,14 +28,14 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+      <AppTitle style={{ marginBottom: 60 }}>Welcome to phel4</AppTitle>
       <AppTextInput icon="email" placeholder="E-mail" />
-      <AppTextInput icon="lock" placeholder="Password" />
       <AppButton
         style={{ marginTop: 35 }}
-        title="Log in"
         onPress={() => {
           console.log('Tapped');
         }}
+        title="Click me"
       />
       <StatusBar style="auto" />
     </View>
