@@ -2,7 +2,7 @@ import React from 'react';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { StyleSheet, TextInput, View } from 'react-native';
 
-import colors from '../config/colors';
+import defaultStyles from '../config/styles';
 
 export default function AppTextInput({ icon, style, ...otherProps }) {
   return (
@@ -24,18 +24,18 @@ export default function AppTextInput({ icon, style, ...otherProps }) {
 
 const styles = StyleSheet.create({
   border: {
-    borderColor: colors.white,
+    borderColor: defaultStyles.colors.white,
     borderRadius: 22,
     borderWidth: 2,
     justifyContent: 'center',
     marginVertical: 15,
-    shadowColor: colors.black,
+    shadowColor: defaultStyles.colors.black,
     shadowOffset: { width: 5, height: 5 },
     shadowOpacity: 0.05,
     width: '100%',
   },
   background: {
-    backgroundColor: colors.white,
+    backgroundColor: defaultStyles.colors.white,
     borderRadius: 22,
     height: 60,
     opacity: 0.5,
@@ -47,12 +47,11 @@ const styles = StyleSheet.create({
     position: 'absolute',
   },
   icon: {
-    color: colors.lightGray,
+    color: defaultStyles.colors.lightGray,
     marginRight: 10,
   },
   input: {
     flex: 1,
-    fontFamily: 'Nunito_400Regular',
-    fontSize: 20,
+    ...defaultStyles.text,
   },
 });

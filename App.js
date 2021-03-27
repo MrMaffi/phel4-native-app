@@ -9,6 +9,7 @@ import {
   Nunito_700Bold,
 } from '@expo-google-fonts/nunito';
 
+import AppText from './app/components/AppText';
 import AppTextInput from './app/components/AppTextInput';
 
 import colors from './app/config/colors';
@@ -26,6 +27,9 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+      <AppText style={{ fontFamily: 'Nunito_600SemiBold' }}>
+        Welcome ot Phel4
+      </AppText>
       <AppTextInput
         autoCapitalize="none"
         autoCorrect={false}
