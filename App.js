@@ -8,7 +8,10 @@ import {
   Nunito_600SemiBold,
   Nunito_700Bold,
 } from '@expo-google-fonts/nunito';
-import AppText from './app/components/AppText';
+
+import AppTextInput from './app/components/AppTextInput';
+
+import colors from './app/config/colors';
 
 export default function App() {
   let [fontsLoaded] = useFonts({
@@ -23,10 +26,28 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <AppText>Hello React Native</AppText>
-      <AppText style={{ fontSize: 22, fontFamily: 'Nunito_600SemiBold' }}>
-        Welcome to Phel4
-      </AppText>
+      <AppTextInput
+        autoCapitalize="none"
+        autoCorrect={false}
+        icon="email"
+        keyboardType="email-address"
+        placeholder="E-mail"
+        textContentType="emailAddress"
+      />
+      <AppTextInput
+        autoCapitalize="none"
+        autoCorrect={false}
+        icon="lock"
+        placeholder="Password"
+        secureTextEntry
+        textContentType="password"
+      />
+      <AppTextInput
+        autoCapitalize="none"
+        autoCorrect={false}
+        keyboardType="numeric"
+        placeholder="Code from e-mail"
+      />
       <StatusBar style="auto" />
     </View>
   );
@@ -34,9 +55,10 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
+    backgroundColor: colors.primary,
+    flex: 1,
+    padding: 20,
     justifyContent: 'center',
   },
 });
