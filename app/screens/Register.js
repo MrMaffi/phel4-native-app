@@ -1,11 +1,18 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
 import { Formik } from 'formik';
+import { StyleSheet, View } from 'react-native';
+import * as Yup from 'yup';
 
 import AppButton from '../components/AppButton';
 import AppText from '../components/AppText';
 import AppTextInput from '../components/AppTextInput';
 import AppTitle from '../components/AppTitle';
+
+const validationSchema = Yup.object().shape({
+  name: Yup.string().required().label('Name'),
+  email: Yup.string().required().email().label('E-mail'),
+  password: Yup.string().required().min(6).label('Password'),
+});
 
 export default function Register() {
   return (
@@ -17,34 +24,50 @@ export default function Register() {
         onSubmit={(values) => {
           console.log(values);
         }}
+        validationSchema={validationSchema}
       >
-        {({ handleChange, handleSubmit }) => (
+        {({ errors, handleChange, handleSubmit }) => (
           <>
-            <AppTextInput
-              autoCapitalize="none"
-              autoCorrect={false}
-              icon="account"
-              onChangeText={handleChange('name')}
-              placeholder="What`s your name?"
-            />
-            <AppTextInput
-              autoCapitalize="none"
-              autoCorrect={false}
-              icon="email"
-              keyboardType="email-address"
-              onChangeText={handleChange('email')}
-              placeholder="E-mail"
-              textContentType="emailAddress"
-            />
-            <AppTextInput
-              autoCapitalize="none"
-              autoCorrect={false}
-              icon="lock"
-              onChangeText={handleChange('password')}
-              placeholder="Password"
-              secureTextEntry
-              textContentType="password"
-            />
+            <View style={styles.container}>
+              <AppTextInput
+                autoCapitalize="none"
+                autoCorrect={false}
+                icon="account"
+                onChangeText={handleChange('name')}
+                placeholder="What`s your name?"
+              />
+              {errors.name && (
+                <AppText style={styles.error}>{errors.name}</AppText>
+              )}
+            </View>
+            <View style={styles.container}>
+              <AppTextInput
+                autoCapitalize="none"
+                autoCorrect={false}
+                icon="email"
+                keyboardType="email-address"
+                onChangeText={handleChange('email')}
+                placeholder="E-mail"
+                textContentType="emailAddress"
+              />
+              {errors.email && (
+                <AppText style={styles.error}>{errors.email}</AppText>
+              )}
+            </View>
+            <View style={styles.container}>
+              <AppTextInput
+                autoCapitalize="none"
+                autoCorrect={false}
+                icon="lock"
+                onChangeText={handleChange('password')}
+                placeholder="Password"
+                secureTextEntry
+                textContentType="password"
+              />
+              {errors.password && (
+                <AppText style={styles.error}>{errors.password}</AppText>
+              )}
+            </View>
             <AppButton
               onPress={handleSubmit}
               style={styles.button}
@@ -63,6 +86,15 @@ const styles = StyleSheet.create({
     fontFamily: 'Nunito_600SemiBold',
     fontSize: 22,
     marginBottom: 20,
+  },
+  container: {
+    width: '100%',
+  },
+  error: {
+    color: 'red',
+    fontFamily: 'Nunito_600SemiBold',
+    fontSize: 14,
+    marginLeft: 25,
   },
   button: {
     marginTop: 35,
