@@ -7,6 +7,7 @@ import AppButton from '../components/AppButton';
 import AppText from '../components/AppText';
 import AppTextInput from '../components/AppTextInput';
 import AppTitle from '../components/AppTitle';
+import ErrorMessage from '../components/forms/ErrorMessage';
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required().label('Name'),
@@ -37,9 +38,7 @@ export default function Register() {
                 onChangeText={handleChange('name')}
                 placeholder="What`s your name?"
               />
-              {errors.name && touched.name && (
-                <AppText style={styles.error}>{errors.name}</AppText>
-              )}
+              <ErrorMessage error={errors.name} visible={touched.name} />
             </View>
             <View style={styles.container}>
               <AppTextInput
@@ -52,9 +51,7 @@ export default function Register() {
                 placeholder="E-mail"
                 textContentType="emailAddress"
               />
-              {errors.email && touched.email && (
-                <AppText style={styles.error}>{errors.email}</AppText>
-              )}
+              <ErrorMessage error={errors.email} visible={touched.email} />
             </View>
             <View style={styles.container}>
               <AppTextInput
@@ -67,9 +64,10 @@ export default function Register() {
                 secureTextEntry
                 textContentType="password"
               />
-              {errors.password && touched.password && (
-                <AppText style={styles.error}>{errors.password}</AppText>
-              )}
+              <ErrorMessage
+                error={errors.password}
+                visible={touched.password}
+              />
             </View>
             <AppButton
               onPress={handleSubmit}
@@ -92,12 +90,6 @@ const styles = StyleSheet.create({
   },
   container: {
     width: '100%',
-  },
-  error: {
-    color: 'red',
-    fontFamily: 'Nunito_600SemiBold',
-    fontSize: 14,
-    marginLeft: 25,
   },
   button: {
     marginTop: 35,
