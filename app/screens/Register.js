@@ -26,17 +26,18 @@ export default function Register() {
         }}
         validationSchema={validationSchema}
       >
-        {({ errors, handleChange, handleSubmit }) => (
+        {({ errors, handleChange, handleSubmit, setFieldTouched, touched }) => (
           <>
             <View style={styles.container}>
               <AppTextInput
                 autoCapitalize="none"
                 autoCorrect={false}
                 icon="account"
+                onBlur={() => setFieldTouched('name')}
                 onChangeText={handleChange('name')}
                 placeholder="What`s your name?"
               />
-              {errors.name && (
+              {errors.name && touched.name && (
                 <AppText style={styles.error}>{errors.name}</AppText>
               )}
             </View>
@@ -46,11 +47,12 @@ export default function Register() {
                 autoCorrect={false}
                 icon="email"
                 keyboardType="email-address"
+                onBlur={() => setFieldTouched('email')}
                 onChangeText={handleChange('email')}
                 placeholder="E-mail"
                 textContentType="emailAddress"
               />
-              {errors.email && (
+              {errors.email && touched.email && (
                 <AppText style={styles.error}>{errors.email}</AppText>
               )}
             </View>
@@ -59,12 +61,13 @@ export default function Register() {
                 autoCapitalize="none"
                 autoCorrect={false}
                 icon="lock"
+                onBlur={() => setFieldTouched('password')}
                 onChangeText={handleChange('password')}
                 placeholder="Password"
                 secureTextEntry
                 textContentType="password"
               />
-              {errors.password && (
+              {errors.password && touched.password && (
                 <AppText style={styles.error}>{errors.password}</AppText>
               )}
             </View>
