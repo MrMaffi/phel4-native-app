@@ -3,6 +3,7 @@ import { StyleSheet } from 'react-native';
 import * as Yup from 'yup';
 
 import { AppForm, AppFromField, SubmitButton } from '../components/forms';
+import AppLink from '../components/AppLink';
 import AppText from '../components/AppText';
 import AppTitle from '../components/AppTitle';
 import Screen from '../components/Screen';
@@ -52,7 +53,14 @@ export default function Register() {
         />
         <SubmitButton style={styles.button} title="Log in" />
       </AppForm>
-      <AppText style={styles.link}>Already a member?</AppText>
+      <AppLink
+        style={styles.link}
+        onPress={() => {
+          console.log('Tapped');
+        }}
+      >
+        Already a member?
+      </AppLink>
     </Screen>
   );
 }
@@ -69,7 +77,6 @@ const styles = StyleSheet.create({
     marginTop: 35,
   },
   link: {
-    marginTop: 35,
-    textDecorationLine: 'underline',
+    marginTop: 20,
   },
 });
