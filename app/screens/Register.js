@@ -1,13 +1,12 @@
 import React from 'react';
 import { Formik } from 'formik';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import * as Yup from 'yup';
 
 import AppButton from '../components/AppButton';
+import AppFromField from '../components/forms/AppFromField';
 import AppText from '../components/AppText';
-import AppTextInput from '../components/AppTextInput';
 import AppTitle from '../components/AppTitle';
-import ErrorMessage from '../components/forms/ErrorMessage';
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required().label('Name'),
@@ -27,48 +26,33 @@ export default function Register() {
         }}
         validationSchema={validationSchema}
       >
-        {({ errors, handleChange, handleSubmit, setFieldTouched, touched }) => (
+        {({ handleSubmit }) => (
           <>
-            <View style={styles.container}>
-              <AppTextInput
-                autoCapitalize="none"
-                autoCorrect={false}
-                icon="account"
-                onBlur={() => setFieldTouched('name')}
-                onChangeText={handleChange('name')}
-                placeholder="What`s your name?"
-              />
-              <ErrorMessage error={errors.name} visible={touched.name} />
-            </View>
-            <View style={styles.container}>
-              <AppTextInput
-                autoCapitalize="none"
-                autoCorrect={false}
-                icon="email"
-                keyboardType="email-address"
-                onBlur={() => setFieldTouched('email')}
-                onChangeText={handleChange('email')}
-                placeholder="E-mail"
-                textContentType="emailAddress"
-              />
-              <ErrorMessage error={errors.email} visible={touched.email} />
-            </View>
-            <View style={styles.container}>
-              <AppTextInput
-                autoCapitalize="none"
-                autoCorrect={false}
-                icon="lock"
-                onBlur={() => setFieldTouched('password')}
-                onChangeText={handleChange('password')}
-                placeholder="Password"
-                secureTextEntry
-                textContentType="password"
-              />
-              <ErrorMessage
-                error={errors.password}
-                visible={touched.password}
-              />
-            </View>
+            <AppFromField
+              autoCapitalize="none"
+              autoCorrect={false}
+              icon="account"
+              name="name"
+              placeholder="What`s your name?"
+            />
+            <AppFromField
+              autoCapitalize="none"
+              autoCorrect={false}
+              icon="email"
+              keyboardType="email-address"
+              name="email"
+              placeholder="E-mail"
+              textContentType="emailAddress"
+            />
+            <AppFromField
+              autoCapitalize="none"
+              autoCorrect={false}
+              icon="lock"
+              name="password"
+              placeholder="Password"
+              secureTextEntry
+              textContentType="password"
+            />
             <AppButton
               onPress={handleSubmit}
               style={styles.button}
@@ -87,9 +71,6 @@ const styles = StyleSheet.create({
     fontFamily: 'Nunito_600SemiBold',
     fontSize: 22,
     marginBottom: 20,
-  },
-  container: {
-    width: '100%',
   },
   button: {
     marginTop: 35,
