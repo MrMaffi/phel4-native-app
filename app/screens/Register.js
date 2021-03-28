@@ -5,6 +5,7 @@ import * as Yup from 'yup';
 import { AppForm, AppFromField, SubmitButton } from '../components/forms';
 import AppText from '../components/AppText';
 import AppTitle from '../components/AppTitle';
+import Screen from '../components/Screen';
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required().label('Name'),
@@ -14,7 +15,7 @@ const validationSchema = Yup.object().shape({
 
 export default function Register() {
   return (
-    <>
+    <Screen style={styles.screen}>
       <AppTitle>Welcome to phel4</AppTitle>
       <AppText style={styles.subTitle}>New here? So get started!</AppText>
       <AppForm
@@ -52,11 +53,15 @@ export default function Register() {
         <SubmitButton style={styles.button} title="Log in" />
       </AppForm>
       <AppText style={styles.link}>Already a member?</AppText>
-    </>
+    </Screen>
   );
 }
 
 const styles = StyleSheet.create({
+  screen: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   subTitle: {
     fontFamily: 'Nunito_600SemiBold',
     fontSize: 22,
