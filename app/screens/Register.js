@@ -3,10 +3,10 @@ import { Formik } from 'formik';
 import { StyleSheet } from 'react-native';
 import * as Yup from 'yup';
 
-import AppButton from '../components/AppButton';
 import AppFromField from '../components/forms/AppFromField';
 import AppText from '../components/AppText';
 import AppTitle from '../components/AppTitle';
+import SubmitButton from '../components/forms/SubmitButton';
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required().label('Name'),
@@ -26,7 +26,7 @@ export default function Register() {
         }}
         validationSchema={validationSchema}
       >
-        {({ handleSubmit }) => (
+        {() => (
           <>
             <AppFromField
               autoCapitalize="none"
@@ -53,11 +53,7 @@ export default function Register() {
               secureTextEntry
               textContentType="password"
             />
-            <AppButton
-              onPress={handleSubmit}
-              style={styles.button}
-              title="Log in"
-            />
+            <SubmitButton style={styles.button} title="Log in" />
           </>
         )}
       </Formik>
