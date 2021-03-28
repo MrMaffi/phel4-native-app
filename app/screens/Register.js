@@ -1,8 +1,8 @@
 import React from 'react';
-import { Formik } from 'formik';
 import { StyleSheet } from 'react-native';
 import * as Yup from 'yup';
 
+import AppForm from '../components/forms/AppForm';
 import AppFromField from '../components/forms/AppFromField';
 import AppText from '../components/AppText';
 import AppTitle from '../components/AppTitle';
@@ -19,44 +19,40 @@ export default function Register() {
     <>
       <AppTitle>Welcome to phel4</AppTitle>
       <AppText style={styles.subTitle}>New here? So get started!</AppText>
-      <Formik
+      <AppForm
         initialValues={{ name: '', email: '', password: '' }}
         onSubmit={(values) => {
           console.log(values);
         }}
         validationSchema={validationSchema}
       >
-        {() => (
-          <>
-            <AppFromField
-              autoCapitalize="none"
-              autoCorrect={false}
-              icon="account"
-              name="name"
-              placeholder="What`s your name?"
-            />
-            <AppFromField
-              autoCapitalize="none"
-              autoCorrect={false}
-              icon="email"
-              keyboardType="email-address"
-              name="email"
-              placeholder="E-mail"
-              textContentType="emailAddress"
-            />
-            <AppFromField
-              autoCapitalize="none"
-              autoCorrect={false}
-              icon="lock"
-              name="password"
-              placeholder="Password"
-              secureTextEntry
-              textContentType="password"
-            />
-            <SubmitButton style={styles.button} title="Log in" />
-          </>
-        )}
-      </Formik>
+        <AppFromField
+          autoCapitalize="none"
+          autoCorrect={false}
+          icon="account"
+          name="name"
+          placeholder="What`s your name?"
+        />
+        <AppFromField
+          autoCapitalize="none"
+          autoCorrect={false}
+          icon="email"
+          keyboardType="email-address"
+          name="email"
+          placeholder="E-mail"
+          textContentType="emailAddress"
+        />
+        <AppFromField
+          autoCapitalize="none"
+          autoCorrect={false}
+          icon="lock"
+          name="password"
+          placeholder="Password"
+          secureTextEntry
+          textContentType="password"
+        />
+        <SubmitButton style={styles.button} title="Log in" />
+      </AppForm>
       <AppText style={styles.link}>Already a member?</AppText>
     </>
   );
