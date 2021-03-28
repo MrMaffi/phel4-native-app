@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     borderRadius: 22,
     borderWidth: 2,
     justifyContent: 'center',
-    marginVertical: 15,
+    marginVertical: 8,
     shadowColor: defaultStyles.colors.black,
     shadowOffset: { width: 5, height: 5 },
     shadowOpacity: 0.05,
@@ -36,8 +36,8 @@ const styles = StyleSheet.create({
   },
   background: {
     backgroundColor: defaultStyles.colors.white,
-    borderRadius: 22,
-    height: 60,
+    borderRadius: 20,
+    height: 55,
     opacity: 0.5,
   },
   container: {
@@ -54,5 +54,6 @@ const styles = StyleSheet.create({
     flex: 1,
     ...defaultStyles.text,
     fontSize: 18,
+    height: 50,
   },
 });
