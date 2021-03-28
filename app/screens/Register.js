@@ -63,8 +63,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   subTitle: {
-    fontFamily: 'Nunito_600SemiBold',
-    fontSize: 22,
     marginBottom: 20,
   },
   button: {
