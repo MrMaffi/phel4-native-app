@@ -2,16 +2,14 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import * as Yup from 'yup';
 
-import { AppForm, AppFromField, SubmitButton } from '../components/forms';
+import { AppForm, CodeInput, SubmitButton } from '../components/forms';
 import AppLink from '../components/AppLink';
 import AppText from '../components/AppText';
 import AppTitle from '../components/AppTitle';
 import Screen from '../components/Screen';
 
-import { code } from '../config/formFieldsProps';
-
 const validationSchema = Yup.object().shape({
-  code: Yup.string().required().min(4).max(6).label('Code'),
+  code: Yup.string().required().min(4).label('Code'),
 });
 
 export default function ConfirmScreen() {
@@ -28,8 +26,8 @@ export default function ConfirmScreen() {
         }}
         validationSchema={validationSchema}
       >
-        <AppFromField {...code} />
-        <SubmitButton style={styles.button} title="Confirm" />
+        <CodeInput />
+        <SubmitButton title="Confirm" style={styles.button} />
       </AppForm>
       <AppLink
         style={styles.link}
