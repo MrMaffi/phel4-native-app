@@ -8,6 +8,7 @@ import AppText from '../components/AppText';
 import AppTitle from '../components/AppTitle';
 import Screen from '../components/Screen';
 
+import { formScreenStyles } from '../config/styles';
 import { name, email, password } from '../config/formFieldsProps';
 
 const validationSchema = Yup.object().shape({
@@ -46,17 +47,5 @@ export default function RegisterScreen() {
 }
 
 const styles = StyleSheet.create({
-  screen: {
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  subTitle: {
-    marginBottom: 20,
-  },
-  button: {
-    marginTop: 35,
-  },
-  link: {
-    marginTop: 20,
-  },
+  ...formScreenStyles,
 });
