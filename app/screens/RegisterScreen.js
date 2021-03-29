@@ -16,7 +16,7 @@ const validationSchema = Yup.object().shape({
   password: Yup.string().required().min(6).label('Password'),
 });
 
-export default function Register() {
+export default function RegisterScreen() {
   return (
     <Screen style={styles.screen}>
       <AppTitle>Welcome to phel4</AppTitle>
