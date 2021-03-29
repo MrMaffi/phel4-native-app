@@ -7,7 +7,7 @@ import {
   Nunito_700Bold,
 } from '@expo-google-fonts/nunito';
 
-import RegisterScreen from './app/screens/RegisterScreen';
+import LoginScreen from './app/screens/LoginScreen';
 
 export default function App() {
   let [fontsLoaded] = useFonts({
@@ -20,5 +20,5 @@ export default function App() {
     return <AppLoading />;
   }
 
-  return <RegisterScreen />;
+  return <LoginScreen />;
 }
