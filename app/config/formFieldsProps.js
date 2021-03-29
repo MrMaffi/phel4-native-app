@@ -28,4 +28,11 @@ const password = {
   textContentType: 'password',
 };
 
-export { name, email, password };
+const code = {
+  ...basic,
+  keyboardType: 'numeric',
+  name: 'code',
+  placeholder: 'Code from e-mail',
+};
+
+export { name, email, password, code };
