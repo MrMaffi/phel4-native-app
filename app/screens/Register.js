@@ -8,6 +8,8 @@ import AppText from '../components/AppText';
 import AppTitle from '../components/AppTitle';
 import Screen from '../components/Screen';
 
+import { name, email, password } from '../config/formFieldsProps';
+
 const validationSchema = Yup.object().shape({
   name: Yup.string().required().label('Name'),
   email: Yup.string().required().email().label('E-mail'),
@@ -26,31 +28,9 @@ export default function Register() {
         }}
         validationSchema={validationSchema}
       >
-        <AppFromField
-          autoCapitalize="none"
-          autoCorrect={false}
-          icon="account"
-          name="name"
-          placeholder="What`s your name?"
-        />
-        <AppFromField
-          autoCapitalize="none"
-          autoCorrect={false}
-          icon="email"
-          keyboardType="email-address"
-          name="email"
-          placeholder="E-mail"
-          textContentType="emailAddress"
-        />
-        <AppFromField
-          autoCapitalize="none"
-          autoCorrect={false}
-          icon="lock"
-          name="password"
-          placeholder="Password"
-          secureTextEntry
-          textContentType="password"
-        />
+        <AppFromField {...name} />
+        <AppFromField {...email} />
+        <AppFromField {...password} />
         <SubmitButton style={styles.button} title="Log in" />
       </AppForm>
       <AppLink
