@@ -19,7 +19,7 @@ export default function RecoverScreen() {
   return (
     <Screen style={styles.screen}>
       <AppTitle>Recover Your Account</AppTitle>
-      <AppText style={styles.subTitle}>
+      <AppText numberOfLines={2} style={styles.subTitle}>
         Please type your mail so we can to send a recovery code on it
       </AppText>
       <AppForm
