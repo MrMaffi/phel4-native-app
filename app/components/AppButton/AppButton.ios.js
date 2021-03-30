@@ -1,14 +1,16 @@
 import React from 'react';
-import { StyleSheet, Text, TouchableHighlight, View } from 'react-native';
+import { StyleSheet, TouchableHighlight, View } from 'react-native';
 
-import defaultStyles from '../../config/styles';
+import AppText from '../AppText';
+
+import colors from '../../config/colors';
 
 export default function AppButton({ style, title, onPress }) {
   return (
     <View style={[styles.container, style]}>
       <TouchableHighlight onPress={onPress}>
         <View style={styles.button}>
-          <Text style={styles.text}>{title}</Text>
+          <AppText style={styles.text}>{title}</AppText>
         </View>
       </TouchableHighlight>
     </View>
@@ -23,15 +25,13 @@ const styles = StyleSheet.create({
   },
   button: {
     alignItems: 'center',
-    backgroundColor: defaultStyles.colors.secondary,
+    backgroundColor: colors.secondary,
     borderRadius: 22,
     height: 60,
     justifyContent: 'center',
     width: '100%',
   },
   text: {
-    color: defaultStyles.colors.white,
-    fontFamily: 'Nunito_600SemiBold',
-    fontSize: 22,
+    color: colors.white,
   },
 });

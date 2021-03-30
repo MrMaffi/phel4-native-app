@@ -1,5 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, TouchableNativeFeedback, View } from 'react-native';
+import { StyleSheet, TouchableNativeFeedback, View } from 'react-native';
+
+import AppText from '../AppText';
 
 import colors from '../../config/colors';
 
@@ -8,7 +10,7 @@ export default function AppButton({ style, title, onPress }) {
     <View style={[styles.container, style]}>
       <TouchableNativeFeedback onPress={onPress}>
         <View style={styles.button}>
-          <Text style={styles.text}>{title}</Text>
+          <AppText style={styles.text}>{title}</AppText>
         </View>
       </TouchableNativeFeedback>
     </View>
@@ -31,7 +33,5 @@ const styles = StyleSheet.create({
   },
   text: {
     color: colors.white,
-    fontFamily: 'Nunito_600SemiBold',
-    fontSize: 22,
   },
 });

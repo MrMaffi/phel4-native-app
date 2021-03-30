@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
   text: {
     color: colors.secondary,
     fontFamily: 'Nunito_700Bold',
-    fontSize: 28,
+    fontSize: 26,
     textTransform: 'capitalize',
   },
 });
