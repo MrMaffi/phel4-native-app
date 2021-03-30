@@ -32,7 +32,7 @@ export default function RegisterScreen() {
         <AppFromField {...name} />
         <AppFromField {...email} />
         <AppFromField {...password} />
-        <SubmitButton style={styles.button} title="Log in" />
+        <SubmitButton style={styles.button} title="Create account" />
       </AppForm>
       <AppLink
         style={styles.link}
