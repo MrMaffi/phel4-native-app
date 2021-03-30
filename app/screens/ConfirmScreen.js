@@ -11,7 +11,11 @@ import Screen from '../components/Screen';
 import { formScreenStyles } from '../config/styles';
 
 const validationSchema = Yup.object().shape({
-  code: Yup.string().required().min(4).label('Code'),
+  code: Yup.string()
+    .matches(/^\d+$/, 'Code should have digits only')
+    .required()
+    .min(4)
+    .label('Code'),
 });
 
 export default function ConfirmScreen() {

@@ -5,12 +5,12 @@ import AppText from '../AppText';
 
 import colors from '../../config/colors';
 
-export default function ErrorMessage({ error, visible }) {
+export default function ErrorMessage({ error, style, visible }) {
   if (!error || !visible) {
     return null;
   }
 
-  return <AppText style={styles.error}>{error}</AppText>;
+  return <AppText style={[styles.error, style]}>{error}</AppText>;
 }
 
 const styles = StyleSheet.create({

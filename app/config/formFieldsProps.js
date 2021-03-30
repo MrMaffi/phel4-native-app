@@ -1,6 +1,7 @@
 const basic = {
   autoCapitalize: 'none',
   autoCorrect: false,
+  returnKeyType: 'done',
 };
 
 const name = {

@@ -45,7 +45,11 @@ export default function CodeInput() {
           </Text>
         )}
       />
-      <ErrorMessage error={errors.code} visible={touched.code} />
+      <ErrorMessage
+        error={errors.code}
+        style={styles.error}
+        visible={touched.code}
+      />
     </View>
   );
 }
@@ -72,5 +76,8 @@ const styles = StyleSheet.create({
   focusCell: {
     borderColor: colors.black,
     borderWidth: 2,
+  },
+  error: {
+    marginLeft: 10,
   },
 });
