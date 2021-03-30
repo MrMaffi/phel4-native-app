@@ -8,27 +8,26 @@ import AppText from '../components/AppText';
 import AppTitle from '../components/AppTitle';
 import Screen from '../components/Screen';
 
-import { name, email, password } from '../config/formFieldsProps';
+import { formScreenStyles } from '../config/styles';
+import { email, password } from '../config/formFieldsProps';
 
 const validationSchema = Yup.object().shape({
-  name: Yup.string().required().label('Name'),
   email: Yup.string().required().email().label('E-mail'),
   password: Yup.string().required().min(6).label('Password'),
 });
 
-export default function Register() {
+export default function LoginScreen() {
   return (
     <Screen style={styles.screen}>
-      <AppTitle>Welcome to phel4</AppTitle>
-      <AppText style={styles.subTitle}>New here? So get started!</AppText>
+      <AppTitle>Log In to phel4</AppTitle>
+      <AppText style={styles.subTitle}>Missed? So login and welcome!</AppText>
       <AppForm
-        initialValues={{ name: '', email: '', password: '' }}
+        initialValues={{ email: '', password: '' }}
         onSubmit={(values) => {
           console.log(values);
         }}
         validationSchema={validationSchema}
       >
-        <AppFromField {...name} />
         <AppFromField {...email} />
         <AppFromField {...password} />
         <SubmitButton style={styles.button} title="Log in" />
@@ -39,24 +38,19 @@ export default function Register() {
           console.log('Tapped');
         }}
       >
-        Already a member?
+        Forgot password?
+      </AppLink>
+      <AppLink
+        onPress={() => {
+          console.log('Tapped');
+        }}
+      >
+        Don`t have account?
       </AppLink>
     </Screen>
   );
 }
 
 const styles = StyleSheet.create({
-  screen: {
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  subTitle: {
-    marginBottom: 20,
-  },
-  button: {
-    marginTop: 35,
-  },
-  link: {
-    marginTop: 20,
-  },
+  ...formScreenStyles,
 });
