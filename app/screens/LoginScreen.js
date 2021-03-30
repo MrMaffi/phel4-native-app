@@ -22,7 +22,7 @@ export default function LoginScreen() {
       <AppTitle>Log In to phel4</AppTitle>
       <AppText style={styles.subTitle}>Missed? So login and welcome!</AppText>
       <AppForm
-        initialValues={{ name: '', email: '', password: '' }}
+        initialValues={{ email: '', password: '' }}
         onSubmit={(values) => {
           console.log(values);
         }}
