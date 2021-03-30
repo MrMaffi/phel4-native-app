@@ -15,8 +15,9 @@ export default function AppLink({ children, onPress, style }) {
 
 const styles = StyleSheet.create({
   link: {
-    color: colors.darkGray,
+    color: colors.black,
     fontSize: 18,
+    marginVertical: 3,
     textDecorationLine: 'underline',
   },
 });
