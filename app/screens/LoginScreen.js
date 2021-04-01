@@ -16,7 +16,7 @@ const validationSchema = Yup.object().shape({
   password: Yup.string().required().min(6).label('Password'),
 });
 
-export default function LoginScreen() {
+export default function LoginScreen({ navigation }) {
   return (
     <Screen style={styles.screen}>
       <AppTitle>Log In to phel4</AppTitle>
@@ -35,14 +35,14 @@ export default function LoginScreen() {
       <AppLink
         style={styles.link}
         onPress={() => {
-          console.log('Tapped');
+          navigation.navigate('Recover');
         }}
       >
         Forgot password?
       </AppLink>
       <AppLink
         onPress={() => {
-          console.log('Tapped');
+          navigation.navigate('Register');
         }}
       >
         Don`t have account?
