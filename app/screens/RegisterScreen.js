@@ -9,6 +9,7 @@ import AppTitle from '../components/AppTitle';
 import Screen from '../components/Screen';
 
 import { formScreenStyles } from '../config/styles';
+import routes from '../navigation/routes';
 import { name, email, password } from '../config/formFieldsProps';
 
 const validationSchema = Yup.object().shape({
@@ -26,7 +27,7 @@ export default function RegisterScreen({ navigation }) {
         initialValues={{ name: '', email: '', password: '' }}
         onSubmit={(values) => {
           console.log(values);
-          navigation.navigate('Confirm');
+          navigation.navigate(routes.CONFIRM);
         }}
         validationSchema={validationSchema}
       >
@@ -38,7 +39,7 @@ export default function RegisterScreen({ navigation }) {
       <AppLink
         style={styles.link}
         onPress={() => {
-          navigation.navigate('Login');
+          navigation.navigate(routes.LOGIN);
         }}
       >
         Already a member?

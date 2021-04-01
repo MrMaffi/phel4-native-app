@@ -8,8 +8,9 @@ import AppText from '../components/AppText';
 import AppTitle from '../components/AppTitle';
 import Screen from '../components/Screen';
 
-import { formScreenStyles } from '../config/styles';
 import { email, password } from '../config/formFieldsProps';
+import { formScreenStyles } from '../config/styles';
+import routes from '../navigation/routes';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required().email().label('E-mail'),
@@ -35,14 +36,14 @@ export default function LoginScreen({ navigation }) {
       <AppLink
         style={styles.link}
         onPress={() => {
-          navigation.navigate('Recover');
+          navigation.navigate(routes.RECOVER);
         }}
       >
         Forgot password?
       </AppLink>
       <AppLink
         onPress={() => {
-          navigation.navigate('Register');
+          navigation.navigate(routes.REGISTER);
         }}
       >
         Don`t have account?
