@@ -17,7 +17,7 @@ const validationSchema = Yup.object().shape({
   password: Yup.string().required().min(6).label('Password'),
 });
 
-export default function RegisterScreen() {
+export default function RegisterScreen({ navigation }) {
   return (
     <Screen style={styles.screen}>
       <AppTitle>Welcome to phel4</AppTitle>
@@ -26,6 +26,7 @@ export default function RegisterScreen() {
         initialValues={{ name: '', email: '', password: '' }}
         onSubmit={(values) => {
           console.log(values);
+          navigation.navigate('Confirm');
         }}
         validationSchema={validationSchema}
       >
@@ -37,7 +38,7 @@ export default function RegisterScreen() {
       <AppLink
         style={styles.link}
         onPress={() => {
-          console.log('Tapped');
+          navigation.navigate('Login');
         }}
       >
         Already a member?

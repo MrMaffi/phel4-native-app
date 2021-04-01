@@ -6,8 +6,9 @@ import {
   Nunito_600SemiBold,
   Nunito_700Bold,
 } from '@expo-google-fonts/nunito';
+import { NavigationContainer } from '@react-navigation/native';
 
-import ConfirmScreen from './app/screens/ConfirmScreen';
+import RegisterNavigator from './app/navigation/RegisterNavigator';
 
 export default function App() {
   let [fontsLoaded] = useFonts({
@@ -20,5 +21,9 @@ export default function App() {
     return <AppLoading />;
   }
 
-  return <ConfirmScreen />;
+  return (
+    <NavigationContainer>
+      <RegisterNavigator />
+    </NavigationContainer>
+  );
 }
