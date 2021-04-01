@@ -18,7 +18,7 @@ const validationSchema = Yup.object().shape({
     .label('Code'),
 });
 
-export default function ConfirmScreen() {
+export default function ConfirmScreen({ navigation }) {
   return (
     <Screen style={styles.screen}>
       <AppTitle>Please Check Your Mail</AppTitle>
@@ -42,6 +42,13 @@ export default function ConfirmScreen() {
         }}
       >
         Didn't receive our letter?
+      </AppLink>
+      <AppLink
+        onPress={() => {
+          navigation.navigate('Register');
+        }}
+      >
+        Return back?
       </AppLink>
     </Screen>
   );
