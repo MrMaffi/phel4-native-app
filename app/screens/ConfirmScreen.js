@@ -19,7 +19,7 @@ const validationSchema = Yup.object().shape({
     .label('Code'),
 });
 
-export default function ConfirmScreen({ navigation }) {
+export default function ConfirmScreen({ navigation, route }) {
   return (
     <Screen style={styles.screen}>
       <AppTitle>Please Check Your Mail</AppTitle>
@@ -30,6 +30,9 @@ export default function ConfirmScreen({ navigation }) {
         initialValues={{ code: '' }}
         onSubmit={(values) => {
           console.log(values);
+          {
+            route.params && navigation.navigate(route.params.jumpTo);
+          }
         }}
         validationSchema={validationSchema}
       >
@@ -46,7 +49,7 @@ export default function ConfirmScreen({ navigation }) {
       </AppLink>
       <AppLink
         onPress={() => {
-          navigation.navigate(routes.REGISTER);
+          navigation.goBack();
         }}
       >
         Return back?
