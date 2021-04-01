@@ -10,12 +10,13 @@ import Screen from '../components/Screen';
 
 import { email } from '../config/formFieldsProps';
 import { formScreenStyles } from '../config/styles';
+import routes from '../navigation/routes';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required().email().label('E-mail'),
 });
 
-export default function RecoverScreen() {
+export default function RecoverScreen({ navigation }) {
   return (
     <Screen style={styles.screen}>
       <AppTitle>Recover Your Account</AppTitle>
@@ -35,7 +36,7 @@ export default function RecoverScreen() {
       <AppLink
         style={styles.link}
         onPress={() => {
-          console.log('Tapped');
+          navigation.navigate(routes.LOGIN);
         }}
       >
         Cansel recovery?

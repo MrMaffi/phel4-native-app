@@ -3,4 +3,5 @@ export default Object.freeze({
   CONFIRM: 'Confirm',
   LOGIN: 'Login',
   RECOVER: 'Recover',
+  PASS_CREATE: 'PassCreate',
 });
