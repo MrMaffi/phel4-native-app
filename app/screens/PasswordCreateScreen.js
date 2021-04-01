@@ -9,6 +9,7 @@ import AppTitle from '../components/AppTitle';
 import Screen from '../components/Screen';
 
 import { formScreenStyles } from '../config/styles';
+import routes from '../navigation/routes';
 import { password } from '../config/formFieldsProps';
 
 const validationSchema = Yup.object().shape({
@@ -19,7 +20,7 @@ const validationSchema = Yup.object().shape({
     .label('Confirm password'),
 });
 
-export default function PasswordCreateScreen() {
+export default function PasswordCreateScreen({ navigation }) {
   return (
     <Screen style={styles.screen}>
       <AppTitle>Create new Password</AppTitle>
@@ -46,7 +47,7 @@ export default function PasswordCreateScreen() {
       <AppLink
         style={styles.link}
         onPress={() => {
-          console.log('Tapped');
+          navigation.goBack();
         }}
       >
         Cansel recovery?
