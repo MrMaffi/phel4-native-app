@@ -9,7 +9,6 @@ import AppTitle from '../components/AppTitle';
 import Screen from '../components/Screen';
 
 import { formScreenStyles } from '../config/styles';
-import routes from '../navigation/routes';
 
 const validationSchema = Yup.object().shape({
   code: Yup.string()
