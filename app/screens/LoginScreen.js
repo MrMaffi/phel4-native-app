@@ -43,7 +43,7 @@ export default function LoginScreen({ navigation }) {
       </AppLink>
       <AppLink
         onPress={() => {
-          navigation.navigate(routes.REGISTER);
+          navigation.goBack();
         }}
       >
         Don`t have account?

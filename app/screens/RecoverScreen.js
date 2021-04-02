@@ -37,7 +37,7 @@ export default function RecoverScreen({ navigation }) {
       <AppLink
         style={styles.link}
         onPress={() => {
-          navigation.navigate(routes.LOGIN);
+          navigation.goBack();
         }}
       >
         Cansel recovery?
