@@ -42,11 +42,12 @@ export default function LoginScreen({ navigation }) {
         Forgot password?
       </AppLink>
       <AppLink
+        returnIcon
         onPress={() => {
           navigation.goBack();
         }}
       >
-        Don`t have account?
+        Don`t have account
       </AppLink>
     </Screen>
   );

@@ -47,11 +47,12 @@ export default function ConfirmScreen({ navigation, route }) {
         Didn't receive our letter?
       </AppLink>
       <AppLink
+        returnIcon
         onPress={() => {
           navigation.goBack();
         }}
       >
-        Return back?
+        Return back
       </AppLink>
     </Screen>
   );

@@ -1,23 +1,43 @@
 import React from 'react';
-import { StyleSheet, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, TouchableOpacity } from 'react-native';
+import { MaterialIcons } from '@expo/vector-icons';
 
 import AppText from './AppText';
 
 import colors from '../config/colors';
 
-export default function AppLink({ children, onPress, style }) {
+export default function AppLink({ children, returnIcon, onPress, style }) {
   return (
     <TouchableOpacity onPress={onPress}>
-      <AppText style={[styles.link, style]}>{children}</AppText>
+      <View style={[styles.container, style]}>
+        {returnIcon && (
+          <MaterialIcons name="logout" size={20} style={styles.icon} />
+        )}
+        <AppText
+          style={[
+            styles.link,
+            { textDecorationLine: returnIcon ? 'none' : 'underline' },
+          ]}
+        >
+          {children}
+        </AppText>
+      </View>
     </TouchableOpacity>
   );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    marginVertical: 6,
+  },
   link: {
     color: colors.black,
     fontSize: 18,
-    marginVertical: 3,
-    textDecorationLine: 'underline',
+  },
+  icon: {
+    marginRight: 6,
+    transform: [{ rotate: '180deg' }],
   },
 });

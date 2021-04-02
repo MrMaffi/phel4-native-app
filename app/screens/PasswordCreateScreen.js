@@ -9,7 +9,6 @@ import AppTitle from '../components/AppTitle';
 import Screen from '../components/Screen';
 
 import { formScreenStyles } from '../config/styles';
-import routes from '../navigation/routes';
 import { password } from '../config/formFieldsProps';
 
 const validationSchema = Yup.object().shape({
@@ -45,12 +44,13 @@ export default function PasswordCreateScreen({ navigation }) {
         <SubmitButton style={styles.button} title="Confirm" />
       </AppForm>
       <AppLink
+        returnIcon
         style={styles.link}
         onPress={() => {
           navigation.goBack();
         }}
       >
-        Cansel recovery?
+        Cansel recovery
       </AppLink>
     </Screen>
   );

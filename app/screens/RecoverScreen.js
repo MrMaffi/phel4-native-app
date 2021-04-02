@@ -35,12 +35,13 @@ export default function RecoverScreen({ navigation }) {
         <SubmitButton title="Continue" style={styles.button} />
       </AppForm>
       <AppLink
+        returnIcon
         style={styles.link}
         onPress={() => {
           navigation.goBack();
         }}
       >
-        Cansel recovery?
+        Cansel recovery
       </AppLink>
     </Screen>
   );
