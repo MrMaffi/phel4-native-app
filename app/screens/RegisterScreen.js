@@ -9,6 +9,7 @@ import AppTitle from '../components/AppTitle';
 import Screen from '../components/Screen';
 
 import { formScreenStyles } from '../config/styles';
+import routes from '../navigation/routes';
 import { name, email, password } from '../config/formFieldsProps';
 
 const validationSchema = Yup.object().shape({
@@ -17,7 +18,7 @@ const validationSchema = Yup.object().shape({
   password: Yup.string().required().min(6).label('Password'),
 });
 
-export default function RegisterScreen() {
+export default function RegisterScreen({ navigation }) {
   return (
     <Screen style={styles.screen}>
       <AppTitle>Welcome to phel4</AppTitle>
@@ -26,6 +27,7 @@ export default function RegisterScreen() {
         initialValues={{ name: '', email: '', password: '' }}
         onSubmit={(values) => {
           console.log(values);
+          navigation.navigate(routes.CONFIRM);
         }}
         validationSchema={validationSchema}
       >
@@ -37,7 +39,7 @@ export default function RegisterScreen() {
       <AppLink
         style={styles.link}
         onPress={() => {
-          console.log('Tapped');
+          navigation.navigate(routes.LOGIN);
         }}
       >
         Already a member?

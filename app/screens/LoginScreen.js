@@ -8,15 +8,16 @@ import AppText from '../components/AppText';
 import AppTitle from '../components/AppTitle';
 import Screen from '../components/Screen';
 
-import { formScreenStyles } from '../config/styles';
 import { email, password } from '../config/formFieldsProps';
+import { formScreenStyles } from '../config/styles';
+import routes from '../navigation/routes';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required().email().label('E-mail'),
   password: Yup.string().required().min(6).label('Password'),
 });
 
-export default function LoginScreen() {
+export default function LoginScreen({ navigation }) {
   return (
     <Screen style={styles.screen}>
       <AppTitle>Log In to phel4</AppTitle>
@@ -35,14 +36,14 @@ export default function LoginScreen() {
       <AppLink
         style={styles.link}
         onPress={() => {
-          console.log('Tapped');
+          navigation.navigate(routes.RECOVER);
         }}
       >
         Forgot password?
       </AppLink>
       <AppLink
         onPress={() => {
-          console.log('Tapped');
+          navigation.goBack();
         }}
       >
         Don`t have account?
