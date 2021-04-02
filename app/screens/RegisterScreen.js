@@ -13,7 +13,7 @@ import routes from '../navigation/routes';
 import { name, email, password } from '../config/formFieldsProps';
 
 const validationSchema = Yup.object().shape({
-  name: Yup.string().required().label('Name'),
+  name: Yup.string().required().min(2).label('Name'),
   email: Yup.string().required().email().label('E-mail'),
   password: Yup.string().required().min(6).label('Password'),
 });
