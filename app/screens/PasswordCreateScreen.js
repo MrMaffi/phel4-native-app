@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import * as Yup from 'yup';
 
-import { AppForm, AppFromField, SubmitButton } from '../components/forms';
+import { AppForm, AppFormField, SubmitButton } from '../components/forms';
 import AppLink from '../components/AppLink';
 import AppText from '../components/AppText';
 import AppTitle from '../components/AppTitle';
@@ -32,12 +32,12 @@ export default function PasswordCreateScreen({ navigation }) {
         }}
         validationSchema={validationSchema}
       >
-        <AppFromField
+        <AppFormField
           {...password}
           name={'newPassword'}
           placeholder="New password"
         />
-        <AppFromField
+        <AppFormField
           {...password}
           name={'confirmPassword'}
           placeholder="Confirm password"

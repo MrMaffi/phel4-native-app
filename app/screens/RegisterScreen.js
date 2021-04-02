@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import * as Yup from 'yup';
 
-import { AppForm, AppFromField, SubmitButton } from '../components/forms';
+import { AppForm, AppFormField, SubmitButton } from '../components/forms';
 import AppLink from '../components/AppLink';
 import AppText from '../components/AppText';
 import AppTitle from '../components/AppTitle';
@@ -31,9 +31,9 @@ export default function RegisterScreen({ navigation }) {
         }}
         validationSchema={validationSchema}
       >
-        <AppFromField {...name} />
-        <AppFromField {...email} />
-        <AppFromField {...password} />
+        <AppFormField {...name} />
+        <AppFormField {...email} />
+        <AppFormField {...password} />
         <SubmitButton style={styles.button} title="Create account" />
       </AppForm>
       <AppLink
