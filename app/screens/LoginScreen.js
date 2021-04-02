@@ -2,21 +2,22 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import * as Yup from 'yup';
 
-import { AppForm, AppFromField, SubmitButton } from '../components/forms';
+import { AppForm, AppFormField, SubmitButton } from '../components/forms';
 import AppLink from '../components/AppLink';
 import AppText from '../components/AppText';
 import AppTitle from '../components/AppTitle';
 import Screen from '../components/Screen';
 
-import { formScreenStyles } from '../config/styles';
 import { email, password } from '../config/formFieldsProps';
+import { formScreenStyles } from '../config/styles';
+import routes from '../navigation/routes';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required().email().label('E-mail'),
   password: Yup.string().required().min(6).label('Password'),
 });
 
-export default function LoginScreen() {
+export default function LoginScreen({ navigation }) {
   return (
     <Screen style={styles.screen}>
       <AppTitle>Log In to phel4</AppTitle>
@@ -28,21 +29,21 @@ export default function LoginScreen() {
         }}
         validationSchema={validationSchema}
       >
-        <AppFromField {...email} />
-        <AppFromField {...password} />
+        <AppFormField {...email} />
+        <AppFormField {...password} />
         <SubmitButton style={styles.button} title="Log in" />
       </AppForm>
       <AppLink
         style={styles.link}
         onPress={() => {
-          console.log('Tapped');
+          navigation.navigate(routes.RECOVER);
         }}
       >
         Forgot password?
       </AppLink>
       <AppLink
         onPress={() => {
-          console.log('Tapped');
+          navigation.goBack();
         }}
       >
         Don`t have account?

@@ -16,6 +16,7 @@ export default function AppTextInput({ icon, style, ...otherProps }) {
           clearButtonMode="always"
           style={[styles.input, style]}
           {...otherProps}
+          placeholderTextColor={colors.lightGray}
         />
       </View>
     </View>
