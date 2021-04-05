@@ -22,7 +22,7 @@ const validationSchema = Yup.object().shape({
 export default function PasswordCreateScreen({ navigation }) {
   return (
     <Screen style={styles.screen}>
-      <AppTitle>Create new Password</AppTitle>
+      <AppTitle style={styles.title}>Create new Password</AppTitle>
       <AppText style={styles.subTitle}>Come up with a new password</AppText>
       <AppForm
         initialValues={{ newPassword: '', confirmPassword: '' }}

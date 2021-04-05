@@ -15,7 +15,11 @@ export default function AppFormField({ name, ...otherProps }) {
         onChangeText={handleChange(name)}
         {...otherProps}
       />
-      <ErrorMessage error={errors[name]} visible={touched[name]} />
+      <ErrorMessage
+        error={errors[name]}
+        style={styles.text}
+        visible={touched[name]}
+      />
     </View>
   );
 }
@@ -23,5 +27,8 @@ export default function AppFormField({ name, ...otherProps }) {
 const styles = StyleSheet.create({
   container: {
     width: '100%',
+  },
+  text: {
+    marginBottom: 6,
   },
 });

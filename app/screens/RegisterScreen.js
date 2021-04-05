@@ -21,7 +21,7 @@ const validationSchema = Yup.object().shape({
 export default function RegisterScreen({ navigation }) {
   return (
     <Screen style={styles.screen}>
-      <AppTitle>Welcome to phel4</AppTitle>
+      <AppTitle style={styles.title}>Welcome to phel4</AppTitle>
       <AppText style={styles.subTitle}>New here? So get started!</AppText>
       <AppForm
         initialValues={{ name: '', email: '', password: '' }}

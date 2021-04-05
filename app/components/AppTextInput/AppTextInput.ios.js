@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     borderRadius: 22,
     borderWidth: 2,
     justifyContent: 'center',
-    marginVertical: 8,
+    marginVertical: 12,
     shadowColor: colors.black,
     shadowOffset: { width: 5, height: 5 },
     shadowOpacity: 0.05,
