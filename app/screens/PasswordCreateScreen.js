@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 import * as Yup from 'yup';
 
 import { AppForm, AppFormField, SubmitButton } from '../components/forms';
@@ -34,12 +34,26 @@ export default function PasswordCreateScreen({ navigation }) {
         <AppFormField
           {...password}
           name={'newPassword'}
-          placeholder="New password"
+          {...Platform.select({
+            ios: {
+              placeholder: 'New password',
+            },
+            android: {
+              title: 'New password',
+            },
+          })}
         />
         <AppFormField
           {...password}
           name={'confirmPassword'}
-          placeholder="Confirm password"
+          {...Platform.select({
+            ios: {
+              placeholder: 'Confirm password',
+            },
+            android: {
+              title: 'Confirm password',
+            },
+          })}
         />
         <SubmitButton style={styles.button} title="Confirm" />
       </AppForm>
