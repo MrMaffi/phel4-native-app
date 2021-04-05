@@ -1,19 +1,32 @@
 import React from 'react';
-import { StyleSheet, TextInput, View } from 'react-native';
+import { StyleSheet, Text, TextInput, View } from 'react-native';
+
+import ErrorMessage from '../forms/ErrorMessage';
 
 import colors from '../../config/colors';
 
 export default function AppTextInput({
-  TitleItem,
+  error,
   title,
-  style,
   placeholder,
+  style,
+  visible,
   ...otherProps
 }) {
   return (
-    <View style={styles.border}>
-      <TitleItem style={styles.title}>{title}</TitleItem>
-      <TextInput style={[styles.input, style]} {...otherProps} />
+    <View style={[styles.border, style]}>
+      {error && visible ? (
+        <ErrorMessage
+          error={error}
+          style={[styles.title, { color: colors.danger, marginLeft: 15 }]}
+          visible={visible}
+        >
+          {error}
+        </ErrorMessage>
+      ) : (
+        <Text style={styles.title}>{title}</Text>
+      )}
+      <TextInput style={styles.input} {...otherProps} />
     </View>
   );
 }
@@ -22,7 +35,7 @@ const styles = StyleSheet.create({
   border: {
     borderColor: colors.androidGray,
     borderRadius: 22,
-    borderWidth: 2,
+    borderWidth: 1,
     height: 55,
     justifyContent: 'center',
     marginVertical: 12,
@@ -31,6 +44,7 @@ const styles = StyleSheet.create({
   title: {
     alignItems: 'center',
     backgroundColor: colors.primary,
+    color: colors.black,
     flexDirection: 'row',
     fontSize: 15,
     fontFamily: 'Nunito_400Regular',

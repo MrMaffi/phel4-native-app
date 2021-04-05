@@ -1,7 +1,4 @@
-import { Text } from 'react-native';
-
 const basic = {
-  TitleItem: Text,
   autoCapitalize: 'none',
   autoCorrect: false,
 };
