@@ -11,7 +11,7 @@ export default function AppLink({ children, returnIcon, onPress, style }) {
     <TouchableOpacity onPress={onPress}>
       <View style={[styles.container, style]}>
         {returnIcon && (
-          <MaterialIcons name="logout" size={20} style={styles.icon} />
+          <MaterialIcons name="logout" size={18} style={styles.icon} />
         )}
         <AppText
           style={[
