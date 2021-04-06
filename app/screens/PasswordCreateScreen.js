@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 import * as Yup from 'yup';
 
 import { AppForm, AppFormField, SubmitButton } from '../components/forms';
@@ -9,7 +9,6 @@ import AppTitle from '../components/AppTitle';
 import Screen from '../components/Screen';
 
 import { formScreenStyles } from '../config/styles';
-import routes from '../navigation/routes';
 import { password } from '../config/formFieldsProps';
 
 const validationSchema = Yup.object().shape({
@@ -23,7 +22,7 @@ const validationSchema = Yup.object().shape({
 export default function PasswordCreateScreen({ navigation }) {
   return (
     <Screen style={styles.screen}>
-      <AppTitle>Create new Password</AppTitle>
+      <AppTitle style={styles.title}>Create new Password</AppTitle>
       <AppText style={styles.subTitle}>Come up with a new password</AppText>
       <AppForm
         initialValues={{ newPassword: '', confirmPassword: '' }}
@@ -35,22 +34,37 @@ export default function PasswordCreateScreen({ navigation }) {
         <AppFormField
           {...password}
           name={'newPassword'}
-          placeholder="New password"
+          {...Platform.select({
+            ios: {
+              placeholder: 'New password',
+            },
+            android: {
+              title: 'New password',
+            },
+          })}
         />
         <AppFormField
           {...password}
           name={'confirmPassword'}
-          placeholder="Confirm password"
+          {...Platform.select({
+            ios: {
+              placeholder: 'Confirm password',
+            },
+            android: {
+              title: 'Confirm password',
+            },
+          })}
         />
         <SubmitButton style={styles.button} title="Confirm" />
       </AppForm>
       <AppLink
+        returnIcon
         style={styles.link}
         onPress={() => {
           navigation.goBack();
         }}
       >
-        Cansel recovery?
+        Cansel recovery
       </AppLink>
     </Screen>
   );

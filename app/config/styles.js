@@ -3,15 +3,18 @@ const formScreenStyles = {
     alignItems: 'center',
     justifyContent: 'center',
   },
+  title: {
+    marginBottom: 8,
+  },
   subTitle: {
-    marginBottom: 20,
+    marginBottom: 35,
     textAlign: 'center',
   },
   button: {
-    marginTop: 35,
+    marginTop: 50,
   },
   link: {
-    marginTop: 20,
+    marginTop: 60,
   },
 };
 

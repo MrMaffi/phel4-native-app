@@ -1,8 +1,9 @@
 export default {
-  primary: '#f2f6ff',
-  secondary: '#2e66fd',
+  androidGray: '#e3e7ef',
   black: '#000',
-  white: '#fff',
-  lightGray: '#bebebe',
   danger: '#ff2a2a',
+  lightGray: '#bebebe',
+  secondary: '#2e66fd',
+  primary: '#f2f6ff',
+  white: '#fff',
 };

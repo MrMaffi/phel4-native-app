@@ -20,7 +20,7 @@ const validationSchema = Yup.object().shape({
 export default function LoginScreen({ navigation }) {
   return (
     <Screen style={styles.screen}>
-      <AppTitle>Log In to phel4</AppTitle>
+      <AppTitle style={styles.title}>Log In to phel4</AppTitle>
       <AppText style={styles.subTitle}>Missed? So login and welcome!</AppText>
       <AppForm
         initialValues={{ email: '', password: '' }}
@@ -42,11 +42,12 @@ export default function LoginScreen({ navigation }) {
         Forgot password?
       </AppLink>
       <AppLink
+        returnIcon
         onPress={() => {
           navigation.goBack();
         }}
       >
-        Don`t have account?
+        Don`t have account
       </AppLink>
     </Screen>
   );

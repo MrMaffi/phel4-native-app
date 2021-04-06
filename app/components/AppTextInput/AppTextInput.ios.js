@@ -2,7 +2,7 @@ import React from 'react';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { StyleSheet, TextInput, View } from 'react-native';
 
-import colors from '../config/colors';
+import colors from '../../config/colors';
 
 export default function AppTextInput({ icon, style, ...otherProps }) {
   return (
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     borderRadius: 22,
     borderWidth: 2,
     justifyContent: 'center',
-    marginVertical: 8,
+    marginVertical: 12,
     shadowColor: colors.black,
     shadowOffset: { width: 5, height: 5 },
     shadowOpacity: 0.05,
