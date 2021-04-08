@@ -2,11 +2,14 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import * as Yup from 'yup';
 
+import authApi from '../api/auth';
 import { AppForm, AppFormField, SubmitButton } from '../components/forms';
 import AppLink from '../components/AppLink';
 import AppText from '../components/AppText';
 import AppTitle from '../components/AppTitle';
 import Screen from '../components/Screen';
+import usePostApi from '../hooks/usePostApi';
+import UploadScreen from './UploadScreen';
 
 import { email, password } from '../config/formFieldsProps';
 import { formScreenStyles } from '../config/styles';
@@ -18,14 +21,22 @@ const validationSchema = Yup.object().shape({
 });
 
 export default function LoginScreen({ navigation }) {
+  const {
+    request: handleSubmit,
+    uploadVisible,
+    progress,
+    setProgress,
+  } = usePostApi(authApi.login);
+
   return (
     <Screen style={styles.screen}>
+      <UploadScreen progress={progress} visible={uploadVisible} />
       <AppTitle style={styles.title}>Log In to phel4</AppTitle>
       <AppText style={styles.subTitle}>Missed? So login and welcome!</AppText>
       <AppForm
         initialValues={{ email: '', password: '' }}
-        onSubmit={(values) => {
-          console.log(values);
+        onSubmit={({ email, password }) => {
+          handleSubmit(email, password, (progress) => setProgress(progress));
         }}
         validationSchema={validationSchema}
       >
@@ -36,18 +47,17 @@ export default function LoginScreen({ navigation }) {
       <AppLink
         style={styles.link}
         onPress={() => {
+          navigation.goBack();
+        }}
+      >
+        Don`t have account?
+      </AppLink>
+      <AppLink
+        onPress={() => {
           navigation.navigate(routes.RECOVER);
         }}
       >
         Forgot password?
-      </AppLink>
-      <AppLink
-        returnIcon
-        onPress={() => {
-          navigation.goBack();
-        }}
-      >
-        Don`t have account
       </AppLink>
     </Screen>
   );
