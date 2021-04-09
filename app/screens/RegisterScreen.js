@@ -10,10 +10,16 @@ import Screen from '../components/Screen';
 
 import { formScreenStyles } from '../config/styles';
 import routes from '../navigation/routes';
-import { name, email, password } from '../config/formFieldsProps';
+import {
+  firstName,
+  lastName,
+  email,
+  password,
+} from '../config/formFieldsProps';
 
 const validationSchema = Yup.object().shape({
-  name: Yup.string().required().min(2).label('Name'),
+  firstName: Yup.string().required().min(2).label('First name'),
+  lastName: Yup.string().required().min(2).label('Last name'),
   email: Yup.string().required().email().label('E-mail'),
   password: Yup.string().required().min(6).label('Password'),
 });
@@ -24,14 +30,15 @@ export default function RegisterScreen({ navigation }) {
       <AppTitle style={styles.title}>Welcome to phel4</AppTitle>
       <AppText style={styles.subTitle}>New here? So get started!</AppText>
       <AppForm
-        initialValues={{ name: '', email: '', password: '' }}
+        initialValues={{ firstName: '', lastName: '', email: '', password: '' }}
         onSubmit={(values) => {
           console.log(values);
           navigation.navigate(routes.CONFIRM);
         }}
         validationSchema={validationSchema}
       >
-        <AppFormField {...name} />
+        <AppFormField {...firstName} />
+        <AppFormField {...lastName} />
         <AppFormField {...email} />
         <AppFormField {...password} />
         <SubmitButton style={styles.button} title="Create account" />

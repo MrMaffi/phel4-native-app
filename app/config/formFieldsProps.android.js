@@ -3,10 +3,16 @@ const basic = {
   autoCorrect: false,
 };
 
-const name = {
+const firstName = {
   ...basic,
-  title: 'Your name',
-  name: 'name',
+  title: 'Your first name',
+  name: 'firstName',
+};
+
+const lastName = {
+  ...basic,
+  title: 'Your last name',
+  name: 'lastName',
 };
 
 const email = {
@@ -23,4 +29,4 @@ const password = {
   secureTextEntry: true,
 };
 
-export { name, email, password };
+export { firstName, lastName, email, password };

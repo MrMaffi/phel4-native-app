@@ -4,11 +4,16 @@ const basic = {
   returnKeyType: 'done',
 };
 
-const name = {
+const firstName = {
   ...basic,
-  icon: 'account',
-  name: 'name',
+  name: 'firstName',
   placeholder: 'What`s your name?',
+};
+
+const lastName = {
+  ...basic,
+  name: 'lastName',
+  placeholder: 'Your last name?',
 };
 
 const email = {
@@ -29,4 +34,4 @@ const password = {
   textContentType: 'password',
 };
 
-export { name, email, password };
+export { firstName, lastName, email, password };
