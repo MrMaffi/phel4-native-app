@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import * as Yup from 'yup';
 
-import authApi from '../api/auth';
+import auth from '../api/auth';
 import { AppForm, AppFormField, SubmitButton } from '../components/forms';
 import AppLink from '../components/AppLink';
 import AppText from '../components/AppText';
@@ -26,7 +26,7 @@ export default function LoginScreen({ navigation }) {
     uploadVisible,
     progress,
     setProgress,
-  } = usePostApi(authApi.login);
+  } = usePostApi(auth);
 
   return (
     <Screen style={styles.screen}>
@@ -35,8 +35,10 @@ export default function LoginScreen({ navigation }) {
       <AppText style={styles.subTitle}>Missed? So login and welcome!</AppText>
       <AppForm
         initialValues={{ email: '', password: '' }}
-        onSubmit={({ email, password }) => {
-          handleSubmit(email, password, (progress) => setProgress(progress));
+        onSubmit={(values) => {
+          handleSubmit('!user_login', values, (progress) =>
+            setProgress(progress)
+          );
         }}
         validationSchema={validationSchema}
       >

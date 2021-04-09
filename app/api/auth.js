@@ -2,10 +2,10 @@ import client from './client';
 
 const endpoint = '/ua/data';
 
-const login = (email, password, onUploadProgress) => {
+const auth = (key, data, onUploadProgress) => {
   return client.post(
     endpoint,
-    { '!user_login': [{ email, password }] },
+    { [key]: [{ ...data }] },
     {
       onUploadProgress: (progress) =>
         onUploadProgress(progress.loaded / progress.total),
@@ -13,6 +13,4 @@ const login = (email, password, onUploadProgress) => {
   );
 };
 
-export default {
-  login,
-};
+export default auth;
