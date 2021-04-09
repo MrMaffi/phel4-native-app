@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { Alert, StyleSheet } from 'react-native';
 import * as Yup from 'yup';
 
 import auth from '../api/auth';
@@ -20,13 +20,18 @@ const validationSchema = Yup.object().shape({
   password: Yup.string().required().min(6).label('Password'),
 });
 
+const handleSubmit = (result) => {
+  const { data } = result;
+
+  if (!data.success) {
+    return Alert.alert('Client error', data.error);
+  }
+
+  Alert.alert('Welcome', 'You have successfully logged in!');
+};
+
 export default function LoginScreen({ navigation }) {
-  const {
-    request: handleSubmit,
-    uploadVisible,
-    progress,
-    setProgress,
-  } = usePostApi(auth);
+  const { request, uploadVisible, progress, setProgress } = usePostApi(auth);
 
   return (
     <Screen style={styles.screen}>
@@ -36,7 +41,7 @@ export default function LoginScreen({ navigation }) {
       <AppForm
         initialValues={{ email: '', password: '' }}
         onSubmit={(values) => {
-          handleSubmit('!user_login', values, (progress) =>
+          request(handleSubmit, '!user_login', values, (progress) =>
             setProgress(progress)
           );
         }}

@@ -5,7 +5,7 @@ export default usePostApi = (apiFunc) => {
   const [uploadVisible, setUploadVisible] = useState(false);
   const [progress, setProgress] = useState(0);
 
-  const request = async (...args) => {
+  const request = async (callback, ...args) => {
     setProgress(0);
     setUploadVisible(true);
     const result = await apiFunc(...args);
@@ -22,13 +22,7 @@ export default usePostApi = (apiFunc) => {
         );
       }
 
-      const { data } = result;
-
-      if (!data.success) {
-        return Alert.alert('Client error', data.error);
-      }
-
-      Alert.alert('Welcome', 'You have successfully logged in!');
+      callback(result);
     }, 300);
   };
 
