@@ -14,8 +14,10 @@ import ErrorMessage from './ErrorMessage';
 import colors from '../../config/colors';
 
 export default function CodeInput() {
+  const cellCount = 6;
+
   const [value, setValue] = useState('');
-  const ref = useBlurOnFulfill({ value, cellCount: 4 });
+  const ref = useBlurOnFulfill({ value, cellCount });
   const [props, getCellOnLayoutHandler] = useClearByFocusCell({
     value,
     setValue,
@@ -31,7 +33,7 @@ export default function CodeInput() {
         {...props}
         value={value}
         onChangeText={setValue}
-        cellCount={4}
+        cellCount={cellCount}
         rootStyle={styles.fieldContainer}
         keyboardType="number-pad"
         textContentType="oneTimeCode"
@@ -68,12 +70,12 @@ const styles = StyleSheet.create({
     lineHeight: 55,
     overflow: 'hidden',
     textAlign: 'center',
-    width: 60,
+    width: 35,
   },
   field: {
     backgroundColor: colors.black,
     height: 2,
-    width: 60,
+    width: 35,
   },
   error: {
     marginLeft: 10,
