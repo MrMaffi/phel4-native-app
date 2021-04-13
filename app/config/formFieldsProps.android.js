@@ -29,4 +29,10 @@ const password = {
   secureTextEntry: true,
 };
 
-export { firstName, lastName, email, password };
+const confirmPassword = {
+  ...password,
+  name: 'confirmPassword',
+  title: 'Confirm password',
+};
+
+export { firstName, lastName, email, password, confirmPassword };

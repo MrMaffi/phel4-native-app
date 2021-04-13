@@ -7,13 +7,13 @@ const basic = {
 const firstName = {
   ...basic,
   name: 'firstName',
-  placeholder: 'What`s your name?',
+  placeholder: 'Your first name',
 };
 
 const lastName = {
   ...basic,
   name: 'lastName',
-  placeholder: 'Your last name?',
+  placeholder: 'Your last name',
 };
 
 const email = {
@@ -34,4 +34,10 @@ const password = {
   textContentType: 'password',
 };
 
-export { firstName, lastName, email, password };
+const confirmPassword = {
+  ...password,
+  name: 'confirmPassword',
+  placeholder: 'Confirm password',
+};
+
+export { firstName, lastName, email, password, confirmPassword };

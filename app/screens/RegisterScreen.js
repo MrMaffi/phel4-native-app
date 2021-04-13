@@ -1,5 +1,5 @@
 import React from 'react';
-import { Alert, StyleSheet } from 'react-native';
+import { Alert, Text } from 'react-native';
 import * as Yup from 'yup';
 
 import auth from '../api/auth';
@@ -11,20 +11,25 @@ import Screen from '../components/Screen';
 import usePostApi from '../hooks/usePostApi';
 import UploadScreen from './UploadScreen';
 
-import { formScreenStyles } from '../config/styles';
+import { formScreenStyles as styles } from '../config/styles';
 import routes from '../navigation/routes';
 import {
   firstName,
   lastName,
   email,
   password,
+  confirmPassword,
 } from '../config/formFieldsProps';
 
 const validationSchema = Yup.object().shape({
   firstName: Yup.string().required().min(2).label('First name'),
-  lastName: Yup.string().required().min(2).label('Last name'),
+  lastName: Yup.string().required().label('Last name'),
   email: Yup.string().required().email().label('E-mail'),
   password: Yup.string().required().min(6).label('Password'),
+  confirmPassword: Yup.string()
+    .required()
+    .oneOf([Yup.ref('password'), null], 'Passwords must match')
+    .label('Confirm password'),
 });
 
 const handleSubmit = (result, navigation) => {
@@ -59,15 +64,30 @@ export default function RegisterScreen({ navigation }) {
   return (
     <Screen style={styles.screen}>
       <UploadScreen progress={progress} visible={uploadVisible} />
-      <AppTitle style={styles.title}>Welcome to phel4</AppTitle>
-      <AppText style={styles.subTitle}>New here? So get started!</AppText>
+      <AppLink
+        style={styles.link}
+        onPress={() => {
+          navigation.navigate(routes.LOGIN);
+        }}
+      >
+        Log in?
+      </AppLink>
+      <AppText style={styles.header}>Sign up</AppText>
+      <AppTitle style={styles.title}>Hello there</AppTitle>
+      <Text style={styles.subTitle}>Please sign up</Text>
       <AppForm
-        initialValues={{ firstName: '', lastName: '', email: '', password: '' }}
+        initialValues={{
+          firstName: '',
+          lastName: '',
+          email: '',
+          password: '',
+          confirmPassword: '',
+        }}
         onSubmit={(values) => {
           request(
             (result) => handleSubmit(result, navigation),
             '!user_register',
-            { ...values, confirmPassword: values.password },
+            { ...values },
             (progress) => setProgress(progress)
           );
         }}
@@ -77,20 +97,9 @@ export default function RegisterScreen({ navigation }) {
         <AppFormField {...lastName} />
         <AppFormField {...email} />
         <AppFormField {...password} />
+        <AppFormField {...confirmPassword} />
         <SubmitButton style={styles.button} title="Create account" />
       </AppForm>
-      <AppLink
-        style={styles.link}
-        onPress={() => {
-          navigation.navigate(routes.LOGIN);
-        }}
-      >
-        Already a member?
-      </AppLink>
     </Screen>
   );
 }
-
-const styles = StyleSheet.create({
-  ...formScreenStyles,
-});

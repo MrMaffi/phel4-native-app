@@ -1,21 +1,31 @@
-const formScreenStyles = {
+import { StyleSheet } from 'react-native';
+
+import colors from './colors';
+
+const formScreenStyles = StyleSheet.create({
   screen: {
-    alignItems: 'center',
+    marginBottom: 60,
+    marginTop: 40,
     justifyContent: 'center',
   },
+  link: { alignSelf: 'flex-end' },
+  header: {
+    color: colors.lightGray,
+    fontSize: 29,
+    marginBottom: 30,
+    marginTop: 20,
+  },
   title: {
-    marginBottom: 8,
+    marginBottom: 6,
   },
   subTitle: {
-    marginBottom: 35,
-    textAlign: 'center',
+    fontFamily: 'Nunito_400Regular',
+    fontSize: 21,
+    marginBottom: 30,
   },
   button: {
     marginTop: 50,
   },
-  link: {
-    marginTop: 60,
-  },
-};
+});
 
 export { formScreenStyles };
