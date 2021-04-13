@@ -1,5 +1,5 @@
 import React from 'react';
-import { Alert, StyleSheet } from 'react-native';
+import { Alert } from 'react-native';
 import * as Yup from 'yup';
 
 import auth from '../api/auth';
@@ -12,7 +12,7 @@ import usePostApi from '../hooks/usePostApi';
 import UploadScreen from './UploadScreen';
 
 import { email, password } from '../config/formFieldsProps';
-import { formScreenStyles } from '../config/styles';
+import { formScreenStyles as styles } from '../config/styles';
 import routes from '../navigation/routes';
 
 const validationSchema = Yup.object().shape({
@@ -36,8 +36,17 @@ export default function LoginScreen({ navigation }) {
   return (
     <Screen style={styles.screen}>
       <UploadScreen progress={progress} visible={uploadVisible} />
-      <AppTitle style={styles.title}>Log In to phel4</AppTitle>
-      <AppText style={styles.subTitle}>Missed? So login and welcome!</AppText>
+      <AppLink
+        style={styles.link}
+        onPress={() => {
+          navigation.navigate(routes.REGISTER);
+        }}
+      >
+        Sign up?
+      </AppLink>
+      <AppTitle style={styles.header}>Log in</AppTitle>
+      <AppTitle style={styles.title}>Welcome back</AppTitle>
+      <AppText style={styles.subTitle}>Please log in</AppText>
       <AppForm
         initialValues={{ email: '', password: '' }}
         onSubmit={(values) => {
@@ -52,14 +61,7 @@ export default function LoginScreen({ navigation }) {
         <SubmitButton style={styles.button} title="Log in" />
       </AppForm>
       <AppLink
-        style={styles.link}
-        onPress={() => {
-          navigation.goBack();
-        }}
-      >
-        Don`t have account?
-      </AppLink>
-      <AppLink
+        style={styles.subLink}
         onPress={() => {
           navigation.navigate(routes.RECOVER);
         }}
@@ -69,7 +71,3 @@ export default function LoginScreen({ navigation }) {
     </Screen>
   );
 }
-
-const styles = StyleSheet.create({
-  ...formScreenStyles,
-});

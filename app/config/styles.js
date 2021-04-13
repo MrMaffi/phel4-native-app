@@ -26,6 +26,10 @@ const formScreenStyles = StyleSheet.create({
   button: {
     marginTop: 50,
   },
+  subLink: {
+    alignSelf: 'center',
+    marginTop: 30,
+  },
 });
 
 export { formScreenStyles };
