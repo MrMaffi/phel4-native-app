@@ -24,7 +24,11 @@ export default RegisterNavigator = () => (
       component={LoginScreen}
       options={{ headerShown: false }}
     />
-    <Stack.Screen name={routes.RECOVER} component={RecoverScreen} />
+    <Stack.Screen
+      name={routes.RECOVER}
+      component={RecoverScreen}
+      options={{ title: 'Recovery' }}
+    />
     <Stack.Screen name={routes.PASS_CREATE} component={PasswordCreateScreen} />
   </Stack.Navigator>
 );

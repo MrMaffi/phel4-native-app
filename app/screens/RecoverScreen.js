@@ -18,10 +18,10 @@ const validationSchema = Yup.object().shape({
 
 export default function RecoverScreen({ navigation }) {
   return (
-    <Screen style={styles.screen}>
-      <AppTitle style={styles.title}>Recover Your Account</AppTitle>
+    <Screen style={styles.screenWithHeader}>
+      <AppTitle style={styles.title}>Recover account</AppTitle>
       <AppText numberOfLines={2} style={styles.subTitle}>
-        Please type your mail so we can to send a recovery code on it
+        Please type your mail so we can send a recovery code on it
       </AppText>
       <AppForm
         initialValues={{ email: '' }}
@@ -34,15 +34,6 @@ export default function RecoverScreen({ navigation }) {
         <AppFormField {...email} />
         <SubmitButton title="Continue" style={styles.button} />
       </AppForm>
-      <AppLink
-        returnIcon
-        style={styles.link}
-        onPress={() => {
-          navigation.goBack();
-        }}
-      >
-        Cansel recovery
-      </AppLink>
     </Screen>
   );
 }
