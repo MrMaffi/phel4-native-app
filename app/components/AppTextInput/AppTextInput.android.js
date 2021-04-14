@@ -1,63 +1,42 @@
 import React from 'react';
-import { StyleSheet, Text, TextInput, View } from 'react-native';
-
-import ErrorMessage from '../forms/ErrorMessage';
+import { StyleSheet, TextInput, View } from 'react-native';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import colors from '../../config/colors';
 
-export default function AppTextInput({
-  error,
-  title,
-  placeholder,
-  style,
-  visible,
-  ...otherProps
-}) {
+export default function AppTextInput({ icon, style, ...otherProps }) {
   return (
-    <View style={[styles.border, style]}>
-      {error && visible ? (
-        <ErrorMessage
-          error={error}
-          style={[styles.title, { color: colors.danger, marginLeft: 15 }]}
-          visible={visible}
-        >
-          {error}
-        </ErrorMessage>
-      ) : (
-        <Text style={styles.title}>{title}</Text>
+    <View style={[styles.container, style]}>
+      {icon && (
+        <MaterialCommunityIcons name={icon} size={20} style={styles.icon} />
       )}
-      <TextInput style={styles.input} {...otherProps} />
+      <TextInput
+        clearButtonMode="always"
+        style={[styles.input, style]}
+        {...otherProps}
+        placeholderTextColor={colors.lightGray}
+      />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  border: {
-    borderColor: colors.androidGray,
-    borderRadius: 22,
-    borderWidth: 1,
-    height: 55,
-    justifyContent: 'center',
-    marginVertical: 12,
-    width: '100%',
-  },
-  title: {
+  container: {
     alignItems: 'center',
-    backgroundColor: colors.primary,
-    color: colors.black,
+    backgroundColor: colors.androidGray,
+    borderRadius: 18,
     flexDirection: 'row',
-    fontSize: 15,
-    fontFamily: 'Nunito_400Regular',
-    paddingHorizontal: 5,
-    marginHorizontal: 15,
-    position: 'absolute',
-    top: '-25%',
+    marginVertical: 12,
+    paddingHorizontal: 20,
+  },
+  icon: {
+    color: colors.lightGray,
+    marginRight: 10,
   },
   input: {
     flex: 1,
     fontFamily: 'Nunito_400Regular',
     fontSize: 18,
-    marginHorizontal: 15,
     height: 50,
   },
 });

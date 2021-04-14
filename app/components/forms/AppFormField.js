@@ -2,9 +2,8 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { useFormikContext } from 'formik';
 
-import AppTextInput from '../../AppTextInput';
-
-import colors from '../../../config/colors';
+import AppTextInput from '../AppTextInput';
+import ErrorMessage from './ErrorMessage';
 
 export default function AppFormField({ name, ...otherProps }) {
   const { errors, setFieldTouched, handleChange, touched } = useFormikContext();
@@ -12,16 +11,14 @@ export default function AppFormField({ name, ...otherProps }) {
   return (
     <View style={styles.container}>
       <AppTextInput
-        {...(errors[name] && touched[name]
-          ? {
-              error: errors[name],
-              style: { borderColor: colors.danger },
-              visible: touched[name],
-            }
-          : {})}
         onBlur={() => setFieldTouched(name)}
         onChangeText={handleChange(name)}
         {...otherProps}
+      />
+      <ErrorMessage
+        error={errors[name]}
+        style={styles.text}
+        visible={touched[name]}
       />
     </View>
   );
@@ -30,5 +27,8 @@ export default function AppFormField({ name, ...otherProps }) {
 const styles = StyleSheet.create({
   container: {
     width: '100%',
+  },
+  text: {
+    marginBottom: 8,
   },
 });
