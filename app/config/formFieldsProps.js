@@ -34,10 +34,16 @@ const password = {
   textContentType: 'password',
 };
 
+const newPassword = {
+  ...password,
+  name: 'newPassword',
+  placeholder: 'New password',
+};
+
 const confirmPassword = {
   ...password,
   name: 'confirmPassword',
   placeholder: 'Confirm password',
 };
 
-export { firstName, lastName, email, password, confirmPassword };
+export { firstName, lastName, email, password, newPassword, confirmPassword };

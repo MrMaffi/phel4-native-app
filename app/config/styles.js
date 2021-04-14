@@ -12,7 +12,7 @@ const formScreenStyles = StyleSheet.create({
   screenWithHeader: {
     marginBottom: 40,
     minHeight: Dimensions.get('window').height - 130,
-    marginTop: 30,
+    justifyContent: 'center',
   },
   link: { alignSelf: 'flex-end' },
   header: {

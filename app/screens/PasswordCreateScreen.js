@@ -1,5 +1,4 @@
 import React from 'react';
-import { StyleSheet, Platform } from 'react-native';
 import * as Yup from 'yup';
 
 import { AppForm, AppFormField, SubmitButton } from '../components/forms';
@@ -8,8 +7,9 @@ import AppText from '../components/AppText';
 import AppTitle from '../components/AppTitle';
 import Screen from '../components/Screen';
 
-import { formScreenStyles } from '../config/styles';
-import { password } from '../config/formFieldsProps';
+import { formScreenStyles as styles } from '../config/styles';
+import routes from '../navigation/routes';
+import { newPassword, confirmPassword } from '../config/formFieldsProps';
 
 const validationSchema = Yup.object().shape({
   newPassword: Yup.string().required().min(6).label('Password'),
@@ -21,8 +21,8 @@ const validationSchema = Yup.object().shape({
 
 export default function PasswordCreateScreen({ navigation }) {
   return (
-    <Screen style={styles.screen}>
-      <AppTitle style={styles.title}>Create new Password</AppTitle>
+    <Screen style={[styles.screen, { marginBottom: 30, marginTop: 10 }]}>
+      <AppTitle style={styles.title}>Create password</AppTitle>
       <AppText style={styles.subTitle}>Come up with a new password</AppText>
       <AppForm
         initialValues={{ newPassword: '', confirmPassword: '' }}
@@ -31,37 +31,15 @@ export default function PasswordCreateScreen({ navigation }) {
         }}
         validationSchema={validationSchema}
       >
-        <AppFormField
-          {...password}
-          name={'newPassword'}
-          {...Platform.select({
-            ios: {
-              placeholder: 'New password',
-            },
-            android: {
-              title: 'New password',
-            },
-          })}
-        />
-        <AppFormField
-          {...password}
-          name={'confirmPassword'}
-          {...Platform.select({
-            ios: {
-              placeholder: 'Confirm password',
-            },
-            android: {
-              title: 'Confirm password',
-            },
-          })}
-        />
-        <SubmitButton style={styles.button} title="Confirm" />
+        <AppFormField {...newPassword} />
+        <AppFormField {...confirmPassword} />
+        <SubmitButton style={styles.button} title="Change password" />
       </AppForm>
       <AppLink
         returnIcon
-        style={styles.link}
+        style={styles.subLink}
         onPress={() => {
-          navigation.goBack();
+          navigation.navigate(routes.LOGIN);
         }}
       >
         Cansel recovery
@@ -69,7 +47,3 @@ export default function PasswordCreateScreen({ navigation }) {
     </Screen>
   );
 }
-
-const styles = StyleSheet.create({
-  ...formScreenStyles,
-});
