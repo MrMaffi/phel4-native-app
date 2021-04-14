@@ -1,12 +1,18 @@
-import { StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 
 import colors from './colors';
 
 const formScreenStyles = StyleSheet.create({
   screen: {
     marginBottom: 60,
+    minHeight: Dimensions.get('window').height,
     marginTop: 40,
     justifyContent: 'center',
+  },
+  screenWithHeader: {
+    marginBottom: 40,
+    minHeight: Dimensions.get('window').height - 130,
+    marginTop: 30,
   },
   link: { alignSelf: 'flex-end' },
   header: {

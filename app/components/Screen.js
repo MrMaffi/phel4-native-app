@@ -1,7 +1,6 @@
 import React from 'react';
 import Constants from 'expo-constants';
 import {
-  Dimensions,
   Platform,
   SafeAreaView,
   ScrollView,
@@ -26,7 +25,6 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primary,
   },
   container: {
-    minHeight: Dimensions.get('window').height,
     paddingTop: Platform.OS !== 'ios' ? Constants.statusBarHeight : null,
     paddingHorizontal: 20,
   },

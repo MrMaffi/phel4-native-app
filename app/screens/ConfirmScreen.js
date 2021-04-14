@@ -1,5 +1,5 @@
 import React from 'react';
-import { Alert, StyleSheet } from 'react-native';
+import { Alert } from 'react-native';
 import * as Yup from 'yup';
 
 import auth from '../api/auth';
@@ -11,7 +11,7 @@ import Screen from '../components/Screen';
 import usePostApi from '../hooks/usePostApi';
 import UploadScreen from './UploadScreen';
 
-import { formScreenStyles } from '../config/styles';
+import { formScreenStyles as styles } from '../config/styles';
 
 const validationSchema = Yup.object().shape({
   code: Yup.string()
@@ -37,9 +37,9 @@ export default function ConfirmScreen({ navigation, route }) {
   const { request, uploadVisible, progress, setProgress } = usePostApi(auth);
 
   return (
-    <Screen style={styles.screen}>
+    <Screen style={styles.screenWithHeader}>
       <UploadScreen progress={progress} visible={uploadVisible} />
-      <AppTitle style={styles.title}>Please Check Your Mail</AppTitle>
+      <AppTitle style={styles.title}>Check your Mail</AppTitle>
       <AppText style={styles.subTitle}>
         We sent a confirmation code on your e-mail
       </AppText>
@@ -59,25 +59,13 @@ export default function ConfirmScreen({ navigation, route }) {
         <SubmitButton title="Confirm" style={styles.button} />
       </AppForm>
       <AppLink
-        style={styles.link}
+        style={styles.subLink}
         onPress={() => {
           console.log('Tapped');
         }}
       >
         Didn't receive our letter?
       </AppLink>
-      <AppLink
-        returnIcon
-        onPress={() => {
-          navigation.goBack();
-        }}
-      >
-        Return back
-      </AppLink>
     </Screen>
   );
 }
-
-const styles = StyleSheet.create({
-  ...formScreenStyles,
-});

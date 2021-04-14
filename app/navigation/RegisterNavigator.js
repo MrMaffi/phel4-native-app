@@ -12,10 +12,18 @@ import routes from './routes';
 const Stack = createStackNavigator();
 
 export default RegisterNavigator = () => (
-  <Stack.Navigator screenOptions={{ headerShown: false }}>
-    <Stack.Screen name={routes.REGISTER} component={RegisterScreen} />
+  <Stack.Navigator>
+    <Stack.Screen
+      name={routes.REGISTER}
+      component={RegisterScreen}
+      options={{ headerShown: false }}
+    />
     <Stack.Screen name={routes.CONFIRM} component={ConfirmScreen} />
-    <Stack.Screen name={routes.LOGIN} component={LoginScreen} />
+    <Stack.Screen
+      name={routes.LOGIN}
+      component={LoginScreen}
+      options={{ headerShown: false }}
+    />
     <Stack.Screen name={routes.RECOVER} component={RecoverScreen} />
     <Stack.Screen name={routes.PASS_CREATE} component={PasswordCreateScreen} />
   </Stack.Navigator>
