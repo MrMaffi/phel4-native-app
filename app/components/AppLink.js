@@ -1,8 +1,6 @@
 import React from 'react';
-import { StyleSheet, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
-
-import AppText from './AppText';
 
 import colors from '../config/colors';
 
@@ -13,14 +11,14 @@ export default function AppLink({ children, returnIcon, onPress, style }) {
         {returnIcon && (
           <MaterialIcons name="logout" size={18} style={styles.icon} />
         )}
-        <AppText
+        <Text
           style={[
             styles.link,
             { textDecorationLine: returnIcon ? 'none' : 'underline' },
           ]}
         >
           {children}
-        </AppText>
+        </Text>
       </View>
     </TouchableOpacity>
   );
@@ -34,6 +32,7 @@ const styles = StyleSheet.create({
   },
   link: {
     color: colors.black,
+    fontFamily: 'Nunito_400Regular',
     fontSize: 18,
   },
   icon: {
