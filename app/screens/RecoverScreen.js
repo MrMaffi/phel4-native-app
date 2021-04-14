@@ -1,15 +1,13 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
 import * as Yup from 'yup';
 
 import { AppForm, AppFormField, SubmitButton } from '../components/forms';
-import AppLink from '../components/AppLink';
 import AppText from '../components/AppText';
 import AppTitle from '../components/AppTitle';
 import Screen from '../components/Screen';
 
 import { email } from '../config/formFieldsProps';
-import { formScreenStyles } from '../config/styles';
+import { formScreenStyles as styles } from '../config/styles';
 import routes from '../navigation/routes';
 
 const validationSchema = Yup.object().shape({
@@ -37,7 +35,3 @@ export default function RecoverScreen({ navigation }) {
     </Screen>
   );
 }
-
-const styles = StyleSheet.create({
-  ...formScreenStyles,
-});
