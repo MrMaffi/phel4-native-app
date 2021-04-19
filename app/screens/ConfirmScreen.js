@@ -2,11 +2,12 @@ import React from 'react';
 import { Alert } from 'react-native';
 import * as Yup from 'yup';
 
-import auth from '../api/auth';
+import { endpoint, auth } from '../api/auth';
 import { AppForm, CodeInput, SubmitButton } from '../components/forms';
 import AppLink from '../components/AppLink';
 import AppText from '../components/AppText';
 import AppTitle from '../components/AppTitle';
+import client from '../api/client';
 import Screen from '../components/Screen';
 import usePostApi from '../hooks/usePostApi';
 import UploadScreen from './UploadScreen';
@@ -49,7 +50,7 @@ export default function ConfirmScreen({ navigation, route }) {
           request(
             (result) => handleSubmit(result, route, navigation),
             '!user_confirmRegister',
-            values,
+            { ...values },
             (progress) => setProgress(progress)
           );
         }}
@@ -61,7 +62,9 @@ export default function ConfirmScreen({ navigation, route }) {
       <AppLink
         style={styles.subLink}
         onPress={() => {
-          console.log('Tapped');
+          client.post(endpoint, {
+            '!user_sendConfirm': [{}],
+          });
         }}
       >
         Didn't receive our letter?

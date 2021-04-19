@@ -2,7 +2,7 @@ import React from 'react';
 import { Alert } from 'react-native';
 import * as Yup from 'yup';
 
-import auth from '../api/auth';
+import { auth } from '../api/auth';
 import { AppForm, AppFormField, SubmitButton } from '../components/forms';
 import AppLink from '../components/AppLink';
 import AppText from '../components/AppText';
@@ -17,7 +17,14 @@ import routes from '../navigation/routes';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required().email().label('E-mail'),
-  password: Yup.string().required().min(6).label('Password'),
+  password: Yup.string()
+    .required()
+    .min(6)
+    .label('Password')
+    .matches(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/,
+      'Not correct format'
+    ),
 });
 
 const handleSubmit = (result) => {

@@ -12,7 +12,14 @@ import routes from '../navigation/routes';
 import { newPassword, confirmPassword } from '../config/formFieldsProps';
 
 const validationSchema = Yup.object().shape({
-  newPassword: Yup.string().required().min(6).label('Password'),
+  newPassword: Yup.string()
+    .required()
+    .min(6)
+    .label('Password')
+    .matches(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/,
+      'Not correct format'
+    ),
   confirmPassword: Yup.string()
     .required()
     .oneOf([Yup.ref('newPassword'), null], 'Passwords must match')

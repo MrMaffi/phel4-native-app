@@ -13,4 +13,4 @@ const auth = (key, data, onUploadProgress) => {
   );
 };
 
-export default auth;
+export { endpoint, auth };
