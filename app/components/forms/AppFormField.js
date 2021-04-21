@@ -5,7 +5,7 @@ import { useFormikContext } from 'formik';
 import AppTextInput from '../AppTextInput';
 import ErrorMessage from './ErrorMessage';
 
-export default function AppFormField({ name, ...otherProps }) {
+export default function AppFormField({ name, withInfo, ...otherProps }) {
   const { errors, setFieldTouched, handleChange, touched } = useFormikContext();
 
   return (
@@ -19,6 +19,7 @@ export default function AppFormField({ name, ...otherProps }) {
         error={errors[name]}
         style={styles.text}
         visible={touched[name]}
+        withInfo={withInfo}
       />
     </View>
   );

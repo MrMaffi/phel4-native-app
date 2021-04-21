@@ -32,6 +32,11 @@ const password = {
   placeholder: 'Password',
   secureTextEntry: true,
   textContentType: 'password',
+  withInfo: {
+    error: 'Not correct format',
+    info:
+      'Password must contain at least one number, and both lower and uppercase letters and special characters.',
+  },
 };
 
 const newPassword = {
@@ -44,6 +49,7 @@ const confirmPassword = {
   ...password,
   name: 'confirmPassword',
   placeholder: 'Confirm password',
+  withInfo: null,
 };
 
 export { firstName, lastName, email, password, newPassword, confirmPassword };
