@@ -26,12 +26,18 @@ const handleSubmit = (result, route, navigation) => {
   const { data } = result;
 
   if (data && !data.success) {
-    return Alert.alert('Client error', data.error);
+    return Alert.alert(
+      'Warning!',
+      'The code is not correct. Check your mailbox and try again, please.'
+    );
   }
 
   route && route.params
     ? navigation.navigate(route.params.jumpTo)
-    : Alert.alert('Welcome', 'Your new account has been created successfully!');
+    : Alert.alert(
+        'Welcome!',
+        'Your new account has been created successfully.'
+      );
 };
 
 export default function ConfirmScreen({ navigation, route }) {
@@ -46,12 +52,12 @@ export default function ConfirmScreen({ navigation, route }) {
       </AppText>
       <AppForm
         initialValues={{ code: '' }}
-        onSubmit={(values) => {
+        onSubmit={values => {
           request(
-            (result) => handleSubmit(result, route, navigation),
+            result => handleSubmit(result, route, navigation),
             '!user_confirmRegister',
             { ...values },
-            (progress) => setProgress(progress)
+            progress => setProgress(progress)
           );
         }}
         validationSchema={validationSchema}

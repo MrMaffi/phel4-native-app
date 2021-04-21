@@ -27,14 +27,17 @@ const validationSchema = Yup.object().shape({
     ),
 });
 
-const handleSubmit = (result) => {
+const handleSubmit = result => {
   const { data } = result;
 
   if (!data.success) {
-    return Alert.alert('Client error', data.error);
+    return Alert.alert(
+      'Warning!',
+      'Sorry, but a user with such email has already logged in.'
+    );
   }
 
-  Alert.alert('Welcome', 'You have successfully logged in!');
+  Alert.alert('Welcome!', 'You have successfully logged in.');
 };
 
 export default function LoginScreen({ navigation }) {
@@ -56,8 +59,8 @@ export default function LoginScreen({ navigation }) {
       <AppText style={styles.subTitle}>Please log in</AppText>
       <AppForm
         initialValues={{ email: '', password: '' }}
-        onSubmit={(values) => {
-          request(handleSubmit, '!user_login', values, (progress) =>
+        onSubmit={values => {
+          request(handleSubmit, '!user_login', values, progress =>
             setProgress(progress)
           );
         }}

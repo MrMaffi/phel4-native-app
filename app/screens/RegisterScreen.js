@@ -44,12 +44,15 @@ const handleSubmit = (result, navigation) => {
 
   if (!data.success) {
     if (data.error) {
-      return Alert.alert('Client error', data.error);
+      return Alert.alert(
+        'Warning!',
+        'Sorry, but a user with such email already exists.'
+      );
     }
 
     return Alert.alert(
-      'Client error',
-      'You have already declared an account with such e-mail! Confirm it?',
+      'Warning!',
+      'You have already declared an account with such email. Confirm it?',
       [
         { text: 'No' },
         {
@@ -90,12 +93,12 @@ export default function RegisterScreen({ navigation }) {
           password: '',
           confirmPassword: '',
         }}
-        onSubmit={(values) => {
+        onSubmit={values => {
           request(
-            (result) => handleSubmit(result, navigation),
+            result => handleSubmit(result, navigation),
             '!user_register',
             { ...values },
-            (progress) => setProgress(progress)
+            progress => setProgress(progress)
           );
         }}
         validationSchema={validationSchema}
