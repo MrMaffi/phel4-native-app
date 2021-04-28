@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { Alert } from 'react-native';
 import * as Yup from 'yup';
 
 import { AppForm, AppFormField, SubmitButton } from '../components/forms';
@@ -15,6 +16,13 @@ const validationSchema = Yup.object().shape({
 });
 
 export default function RecoverScreen({ navigation }) {
+  useEffect(() => {
+    Alert.alert(
+      'Be careful!',
+      'Sorry, but this function is in development and not avaliable now. You can continue, if want to help us to make it better.'
+    );
+  }, []);
+
   return (
     <Screen style={styles.screenWithHeader}>
       <AppTitle style={styles.title}>Recover account</AppTitle>
@@ -23,7 +31,7 @@ export default function RecoverScreen({ navigation }) {
       </AppText>
       <AppForm
         initialValues={{ email: '' }}
-        onSubmit={(values) => {
+        onSubmit={values => {
           console.log(values);
           navigation.navigate(routes.CONFIRM, { jumpTo: routes.PASS_CREATE });
         }}

@@ -43,26 +43,37 @@ const handleSubmit = (result, navigation) => {
   const { data } = result;
 
   if (!data.success) {
-    if (data.error) {
-      return Alert.alert(
-        'Warning!',
-        'Sorry, but a user with such email already exists.'
-      );
-    }
+    console.log(data);
 
-    return Alert.alert(
-      'Warning!',
-      'You have already declared an account with such email. Confirm it?',
-      [
-        { text: 'No' },
-        {
-          text: 'Yes',
-          onPress: () => {
-            navigation.navigate(routes.CONFIRM);
-          },
-        },
-      ]
-    );
+    switch (data.error) {
+      case 'aws': {
+        return Alert.alert(
+          'Warning!',
+          'You have already declared an account with such email. Confirm it?',
+          [
+            { text: 'No' },
+            {
+              text: 'Yes',
+              onPress: () => {
+                navigation.navigate(routes.CONFIRM);
+              },
+            },
+          ]
+        );
+      }
+      case 'user_already_exists': {
+        return Alert.alert(
+          'Warning!',
+          'Sorry, but a user with such email already exists.'
+        );
+      }
+      default: {
+        return Alert.alert(
+          'Oops!',
+          'Unknown error. Sorry but we unable to set the kind of error it is. Try again later, please.'
+        );
+      }
+    }
   }
 
   navigation.navigate(routes.CONFIRM);

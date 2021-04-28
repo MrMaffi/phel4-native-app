@@ -10,6 +10,7 @@ import Screen from '../components/Screen';
 import { formScreenStyles as styles } from '../config/styles';
 import routes from '../navigation/routes';
 import { newPassword, confirmPassword } from '../config/formFieldsProps';
+import { Alert } from 'react-native';
 
 const validationSchema = Yup.object().shape({
   newPassword: Yup.string()
@@ -33,8 +34,20 @@ export default function PasswordCreateScreen({ navigation }) {
       <AppText style={styles.subTitle}>Come up with a new password</AppText>
       <AppForm
         initialValues={{ newPassword: '', confirmPassword: '' }}
-        onSubmit={(values) => {
+        onSubmit={values => {
           console.log(values);
+          return Alert.alert(
+            'Thanks for testing!',
+            'We appreciate your interest in new features. This will help us to make our app better.',
+            [
+              {
+                text: 'Return back',
+                onPress: () => {
+                  navigation.navigate(routes.LOGIN);
+                },
+              },
+            ]
+          );
         }}
         validationSchema={validationSchema}
       >

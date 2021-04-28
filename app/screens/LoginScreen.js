@@ -1,5 +1,6 @@
 import React from 'react';
 import { Alert } from 'react-native';
+import { Notifications } from 'expo';
 import * as Yup from 'yup';
 
 import { auth } from '../api/auth';
@@ -30,14 +31,32 @@ const validationSchema = Yup.object().shape({
 const handleSubmit = result => {
   const { data } = result;
 
+  console.log(data);
+
   if (!data.success) {
-    return Alert.alert(
-      'Warning!',
-      'Sorry, but a user with such email has already logged in.'
-    );
+    switch (data.error) {
+      case 'user_is_already_logged_in':
+        return Alert.alert(
+          'Warning!',
+          'Sorry, but a user with such email has already logged in.'
+        );
+      case 'invalid_login_or_password':
+        return Alert.alert(
+          'Warning!',
+          'Login or password is not correct. Please check and try again.'
+        );
+      default:
+        return Alert.alert(
+          'Oops!',
+          'Unknown error. Sorry but we unable to set the kind of error it is. Try again later, please.'
+        );
+    }
   }
 
-  Alert.alert('Welcome!', 'You have successfully logged in.');
+  Notifications.presentLocalNotificationAsync({
+    title: 'Welcome back!',
+    body: 'You have successfully logged in.',
+  });
 };
 
 export default function LoginScreen({ navigation }) {

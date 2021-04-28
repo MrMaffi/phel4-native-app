@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Alert } from 'react-native';
+import { Notifications } from 'expo';
 import * as Yup from 'yup';
 
 import { endpoint, auth } from '../api/auth';
@@ -25,7 +26,9 @@ const validationSchema = Yup.object().shape({
 const handleSubmit = (result, route, navigation) => {
   const { data } = result;
 
-  if (data && !data.success) {
+  console.log(data);
+
+  if (!route.params && !data?.success) {
     return Alert.alert(
       'Warning!',
       'The code is not correct. Check your mailbox and try again, please.'
@@ -34,14 +37,24 @@ const handleSubmit = (result, route, navigation) => {
 
   route && route.params
     ? navigation.navigate(route.params.jumpTo)
-    : Alert.alert(
-        'Welcome!',
-        'Your new account has been created successfully.'
-      );
+    : Notifications.presentLocalNotificationAsync({
+        title: 'Welcome!',
+        body: 'Your account was successfully created.',
+      });
 };
 
 export default function ConfirmScreen({ navigation, route }) {
   const { request, uploadVisible, progress, setProgress } = usePostApi(auth);
+
+  useEffect(() => {
+    if (route?.params) {
+      Notifications.presentLocalNotificationAsync({
+        title: 'Code!',
+        body:
+          'You can input whatever code you want, remember this feature is in development. Don`t wait for code in your mailbox!',
+      });
+    }
+  }, []);
 
   return (
     <Screen style={styles.screenWithHeader}>
@@ -71,6 +84,16 @@ export default function ConfirmScreen({ navigation, route }) {
           client.post(endpoint, {
             '!user_sendConfirm': [{}],
           });
+          route?.params
+            ? Alert.alert(
+                'Warning',
+                'Sorry, but this function is in development and not avaliable now.'
+              )
+            : Notifications.presentLocalNotificationAsync({
+                title: 'Check your mailbox!',
+                body:
+                  'Your new code must be there. If it doesn`t check your email input and try again.',
+              });
         }}
       >
         Didn't receive our letter?
