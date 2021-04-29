@@ -33,9 +33,16 @@ const handleSubmit = (result, route, navigation) => {
     );
   }
 
+  if (route.params.from === 'Register') {
+    Notifications.presentLocalNotificationAsync({
+      title: 'Congratulations!',
+      body: 'Your account has been created successfully.',
+    });
+  }
+
   route.params.email
-    ? navigation.navigate(route.params.jumpTo, { email: route.params.email })
-    : navigation.navigate(route.params.jumpTo);
+    ? navigation.push(route.params.jumpTo, { email: route.params.email })
+    : navigation.push(route.params.jumpTo);
 };
 
 export default function ConfirmScreen({ navigation, route }) {
