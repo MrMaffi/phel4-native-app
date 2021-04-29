@@ -39,12 +39,10 @@ const validationSchema = Yup.object().shape({
     .label('Confirm password'),
 });
 
-const handleSubmit = (result, navigation) => {
+const handleSubmit = (result, navigation, email) => {
   const { data } = result;
 
   if (!data.success) {
-    console.log(data);
-
     switch (data.error) {
       case 'aws': {
         return Alert.alert(
@@ -55,7 +53,11 @@ const handleSubmit = (result, navigation) => {
             {
               text: 'Yes',
               onPress: () => {
-                navigation.navigate(routes.CONFIRM);
+                navigation.push(routes.CONFIRM, {
+                  from: 'Register',
+                  jumpTo: routes.LOGIN,
+                  email,
+                });
               },
             },
           ]
@@ -76,7 +78,11 @@ const handleSubmit = (result, navigation) => {
     }
   }
 
-  navigation.navigate(routes.CONFIRM);
+  navigation.push(routes.CONFIRM, {
+    from: 'Register',
+    jumpTo: routes.LOGIN,
+    email,
+  });
 };
 
 export default function RegisterScreen({ navigation }) {
@@ -106,7 +112,7 @@ export default function RegisterScreen({ navigation }) {
         }}
         onSubmit={values => {
           request(
-            result => handleSubmit(result, navigation),
+            result => handleSubmit(result, navigation, values.email),
             '!user_register',
             { ...values },
             progress => setProgress(progress)

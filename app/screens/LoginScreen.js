@@ -28,10 +28,8 @@ const validationSchema = Yup.object().shape({
     ),
 });
 
-const handleSubmit = result => {
+const handleSubmit = (result, navigation, email) => {
   const { data } = result;
-
-  console.log(data);
 
   if (!data.success) {
     switch (data.error) {
@@ -44,6 +42,24 @@ const handleSubmit = result => {
         return Alert.alert(
           'Warning!',
           'Login or password is not correct. Please check and try again.'
+        );
+      case 'user_not_confirm':
+        return Alert.alert(
+          'Warning!',
+          'Sorry but user with such email is not confirmed. Do you want to confirm it?',
+          [
+            { text: 'No' },
+            {
+              text: 'Yes',
+              onPress: () => {
+                navigation.push(routes.CONFIRM, {
+                  from: 'Register',
+                  jumpTo: routes.LOGIN,
+                  email,
+                });
+              },
+            },
+          ]
         );
       default:
         return Alert.alert(
@@ -59,7 +75,7 @@ const handleSubmit = result => {
   });
 };
 
-export default function LoginScreen({ navigation }) {
+export default function LoginScreen({ navigation, route }) {
   const { request, uploadVisible, progress, setProgress } = usePostApi(auth);
 
   return (
@@ -79,13 +95,19 @@ export default function LoginScreen({ navigation }) {
       <AppForm
         initialValues={{ email: '', password: '' }}
         onSubmit={values => {
-          request(handleSubmit, '!user_login', values, progress =>
-            setProgress(progress)
+          request(
+            result => handleSubmit(result, navigation, values.email),
+            '!user_login',
+            values,
+            progress => setProgress(progress)
           );
         }}
         validationSchema={validationSchema}
       >
-        <AppFormField {...email} />
+        <AppFormField
+          {...email}
+          value={route?.params?.email ? route.params.email : null}
+        />
         <AppFormField {...password} />
         <SubmitButton style={styles.button} title="Log in" />
       </AppForm>

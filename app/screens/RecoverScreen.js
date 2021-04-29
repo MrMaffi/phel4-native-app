@@ -33,7 +33,10 @@ export default function RecoverScreen({ navigation }) {
         initialValues={{ email: '' }}
         onSubmit={values => {
           console.log(values);
-          navigation.navigate(routes.CONFIRM, { jumpTo: routes.PASS_CREATE });
+          navigation.push(routes.CONFIRM, {
+            from: 'Recover',
+            jumpTo: routes.PASS_CREATE,
+          });
         }}
         validationSchema={validationSchema}
       >

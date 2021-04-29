@@ -26,28 +26,23 @@ const validationSchema = Yup.object().shape({
 const handleSubmit = (result, route, navigation) => {
   const { data } = result;
 
-  console.log(data);
-
-  if (!route.params && !data?.success) {
+  if (route.params.from === 'Register' && !data?.success) {
     return Alert.alert(
       'Warning!',
       'The code is not correct. Check your mailbox and try again, please.'
     );
   }
 
-  route && route.params
-    ? navigation.navigate(route.params.jumpTo)
-    : Notifications.presentLocalNotificationAsync({
-        title: 'Welcome!',
-        body: 'Your account was successfully created.',
-      });
+  route.params.email
+    ? navigation.navigate(route.params.jumpTo, { email: route.params.email })
+    : navigation.navigate(route.params.jumpTo);
 };
 
 export default function ConfirmScreen({ navigation, route }) {
   const { request, uploadVisible, progress, setProgress } = usePostApi(auth);
 
   useEffect(() => {
-    if (route?.params) {
+    if (route?.params?.from === 'Recover') {
       Notifications.presentLocalNotificationAsync({
         title: 'Code!',
         body:
@@ -84,7 +79,7 @@ export default function ConfirmScreen({ navigation, route }) {
           client.post(endpoint, {
             '!user_sendConfirm': [{}],
           });
-          route?.params
+          route?.params?.from === 'Recover'
             ? Alert.alert(
                 'Warning',
                 'Sorry, but this function is in development and not avaliable now.'
