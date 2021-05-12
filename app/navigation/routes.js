@@ -4,4 +4,5 @@ export default Object.freeze({
   LOGIN: 'Login',
   RECOVER: 'Recover',
   PASS_CREATE: 'PassCreate',
+  WELCOME: 'Welcome',
 });

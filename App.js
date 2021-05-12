@@ -9,9 +9,10 @@ import {
 } from '@expo-google-fonts/nunito';
 import { NavigationContainer } from '@react-navigation/native';
 
+import AppNavigator from './app/navigation/AppNavigator';
 import { endpoint } from './app/api/auth';
 import client from './app/api/client';
-import RegisterNavigator from './app/navigation/RegisterNavigator';
+// import RegisterNavigator from './app/navigation/RegisterNavigator';
 import WelcomeScreen from './app/screens/WelcomeScreen';
 
 const getDashboard = async setHasDashboard => {
@@ -36,13 +37,13 @@ export default function App() {
     return <AppLoading />;
   }
 
-  if (hasDashboard?.status === 200) {
-    return <WelcomeScreen />;
-  }
+  // if (hasDashboard?.status === 200) {
+  //   return <WelcomeScreen />;
+  // }
 
   return (
     <NavigationContainer>
-      <RegisterNavigator />
+      <AppNavigator />
     </NavigationContainer>
   );
 }
