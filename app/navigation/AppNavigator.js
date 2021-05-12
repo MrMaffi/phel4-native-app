@@ -3,24 +3,14 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 
-import AppText from '../components/AppText';
-import Screen from '../components/Screen';
-import WelcomeScreen from '../screens/WelcomeScreen';
+import SettingsScreen from '../screens/SttingsScreen';
 import TherapyScreen from '../screens/TherapyScreen';
+import WelcomeScreen from '../screens/WelcomeScreen';
 
 import colors from '../config/colors';
-import { screenStyles as styles } from '../config/styles';
 import routes from './routes';
 
 const Tab = createBottomTabNavigator();
-
-function SettingsScreen() {
-  return (
-    <Screen style={styles.appScreen}>
-      <AppText style={styles.header}>Settings</AppText>
-    </Screen>
-  );
-}
 
 export default AppNavigator = () => {
   return (
@@ -41,7 +31,7 @@ export default AppNavigator = () => {
         }}
       />
       <Tab.Screen
-        name="Therapy"
+        name={routes.THERAPY}
         component={TherapyScreen}
         options={{
           tabBarLabel: 'Therapy',
@@ -51,7 +41,7 @@ export default AppNavigator = () => {
         }}
       />
       <Tab.Screen
-        name="Settings"
+        name={routes.SETTINGS}
         component={SettingsScreen}
         options={{
           tabBarLabel: 'Settings',

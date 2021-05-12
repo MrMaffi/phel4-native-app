@@ -5,4 +5,6 @@ export default Object.freeze({
   RECOVER: 'Recover',
   PASS_CREATE: 'PassCreate',
   WELCOME: 'Welcome',
+  THERAPY: 'Therapy',
+  SETTINGS: 'Settings',
 });
