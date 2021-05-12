@@ -9,6 +9,5 @@ const styles = StyleSheet.create({
   text: {
     fontFamily: 'Nunito_700Bold',
     fontSize: 32,
-    textTransform: 'capitalize',
   },
 });

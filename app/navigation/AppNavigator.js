@@ -4,21 +4,15 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 
 import AppText from '../components/AppText';
-import colors from '../config/colors';
-import routes from './routes';
 import Screen from '../components/Screen';
-import { screenStyles as styles } from '../config/styles';
 import WelcomeScreen from '../screens/WelcomeScreen';
+import TherapyScreen from '../screens/TherapyScreen';
+
+import colors from '../config/colors';
+import { screenStyles as styles } from '../config/styles';
+import routes from './routes';
 
 const Tab = createBottomTabNavigator();
-
-function TherapyScreen() {
-  return (
-    <Screen style={styles.appScreen}>
-      <AppText style={styles.header}>Therapy</AppText>
-    </Screen>
-  );
-}
 
 function SettingsScreen() {
   return (

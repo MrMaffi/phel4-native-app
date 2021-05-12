@@ -10,10 +10,10 @@ import {
 import { NavigationContainer } from '@react-navigation/native';
 
 import AppNavigator from './app/navigation/AppNavigator';
-import { endpoint } from './app/api/auth';
+import RegisterNavigator from './app/navigation/RegisterNavigator';
+
 import client from './app/api/client';
-// import RegisterNavigator from './app/navigation/RegisterNavigator';
-import WelcomeScreen from './app/screens/WelcomeScreen';
+import { endpoint } from './app/api/auth';
 
 const getDashboard = async setHasDashboard => {
   const response = await client.post(endpoint, { '!user_getDashboard': [] });
@@ -37,13 +37,17 @@ export default function App() {
     return <AppLoading />;
   }
 
-  // if (hasDashboard?.status === 200) {
-  //   return <WelcomeScreen />;
-  // }
+  if (hasDashboard?.status === 200) {
+    return (
+      <NavigationContainer>
+        <AppNavigator />
+      </NavigationContainer>
+    );
+  }
 
   return (
     <NavigationContainer>
-      <AppNavigator />
+      <RegisterNavigator />
     </NavigationContainer>
   );
 }

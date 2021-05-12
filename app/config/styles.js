@@ -10,8 +10,8 @@ const screenStyles = StyleSheet.create({
     justifyContent: 'center',
   },
   appScreen: {
-    minHeight: Dimensions.get('window').height,
-    marginTop: 40,
+    minHeight: Dimensions.get('window').height - 40,
+    marginVertical: 40,
   },
   screenWithHeader: {
     marginBottom: 50,
