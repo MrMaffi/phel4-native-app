@@ -14,8 +14,10 @@ import ErrorMessage from './ErrorMessage';
 import colors from '../../config/colors';
 
 export default function CodeInput() {
+  const cellCount = 6;
+
   const [value, setValue] = useState('');
-  const ref = useBlurOnFulfill({ value, cellCount: 4 });
+  const ref = useBlurOnFulfill({ value, cellCount });
   const [props, getCellOnLayoutHandler] = useClearByFocusCell({
     value,
     setValue,
@@ -31,21 +33,24 @@ export default function CodeInput() {
         {...props}
         value={value}
         onChangeText={setValue}
-        cellCount={4}
+        cellCount={cellCount}
         rootStyle={styles.fieldContainer}
         keyboardType="number-pad"
         textContentType="oneTimeCode"
         renderCell={({ index, symbol, isFocused }) => (
-          <Text
-            key={index}
-            style={[styles.cell, isFocused && styles.focusCell]}
-            onLayout={getCellOnLayoutHandler(index)}
-          >
-            {symbol || (isFocused ? <Cursor /> : null)}
-          </Text>
+          <View key={index}>
+            <Text style={styles.cell} onLayout={getCellOnLayoutHandler(index)}>
+              {symbol || (isFocused ? <Cursor /> : null)}
+            </Text>
+            <View style={styles.field} />
+          </View>
         )}
       />
-      <ErrorMessage error={errors.code} visible={touched.code} />
+      <ErrorMessage
+        error={errors.code}
+        style={styles.error}
+        visible={touched.code}
+      />
     </View>
   );
 }
@@ -59,18 +64,20 @@ const styles = StyleSheet.create({
     marginVertical: 8,
   },
   cell: {
-    backgroundColor: colors.white,
-    borderRadius: 12,
-    height: 80,
+    height: 55,
     fontFamily: 'Nunito_400Regular',
     fontSize: 22,
-    lineHeight: 80,
+    lineHeight: 55,
     overflow: 'hidden',
     textAlign: 'center',
-    width: 60,
+    width: 35,
   },
-  focusCell: {
-    borderColor: colors.black,
-    borderWidth: 2,
+  field: {
+    backgroundColor: colors.black,
+    height: 2,
+    width: 35,
+  },
+  error: {
+    marginLeft: 10,
   },
 });

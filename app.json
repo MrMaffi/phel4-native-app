@@ -29,6 +29,9 @@
       "favicon": "./app/assets/favicon.png"
     },
     "description": "",
-    "githubUrl": "https://github.com/MrMaffi/phel4-native-app"
+    "githubUrl": "https://github.com/MrMaffi/phel4-native-app",
+    "notification": {
+      "iosDisplayInForeground": true
+    }
   }
 }

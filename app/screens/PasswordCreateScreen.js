@@ -1,60 +1,69 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
 import * as Yup from 'yup';
 
-import { AppForm, AppFromField, SubmitButton } from '../components/forms';
+import { AppForm, AppFormField, SubmitButton } from '../components/forms';
 import AppLink from '../components/AppLink';
 import AppText from '../components/AppText';
 import AppTitle from '../components/AppTitle';
 import Screen from '../components/Screen';
 
-import { formScreenStyles } from '../config/styles';
-import { password } from '../config/formFieldsProps';
+import { screenStyles as styles } from '../config/styles';
+import routes from '../navigation/routes';
+import { newPassword, confirmPassword } from '../config/formFieldsProps';
+import { Alert } from 'react-native';
 
 const validationSchema = Yup.object().shape({
-  newPassword: Yup.string().required().min(6).label('Password'),
+  newPassword: Yup.string()
+    .required()
+    .min(6)
+    .label('Password')
+    .matches(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/,
+      'Not correct format'
+    ),
   confirmPassword: Yup.string()
     .required()
     .oneOf([Yup.ref('newPassword'), null], 'Passwords must match')
     .label('Confirm password'),
 });
 
-export default function PasswordCreateScreen() {
+export default function PasswordCreateScreen({ navigation }) {
   return (
-    <Screen style={styles.screen}>
-      <AppTitle>Create new Password</AppTitle>
+    <Screen style={[styles.screen, { marginBottom: 30, marginTop: 10 }]}>
+      <AppTitle style={styles.title}>Create password</AppTitle>
       <AppText style={styles.subTitle}>Come up with a new password</AppText>
       <AppForm
         initialValues={{ newPassword: '', confirmPassword: '' }}
-        onSubmit={(values) => {
+        onSubmit={values => {
           console.log(values);
+          return Alert.alert(
+            'Thanks for testing!',
+            'We appreciate your interest in new features. This will help us to make our app better.',
+            [
+              {
+                text: 'Return back',
+                onPress: () => {
+                  navigation.navigate(routes.LOGIN);
+                },
+              },
+            ]
+          );
         }}
         validationSchema={validationSchema}
       >
-        <AppFromField
-          {...password}
-          name={'newPassword'}
-          placeholder="New password"
-        />
-        <AppFromField
-          {...password}
-          name={'confirmPassword'}
-          placeholder="Confirm password"
-        />
-        <SubmitButton style={styles.button} title="Confirm" />
+        <AppFormField {...newPassword} />
+        <AppFormField {...confirmPassword} />
+        <SubmitButton style={styles.button} title="Change password" />
       </AppForm>
       <AppLink
-        style={styles.link}
+        returnIcon
+        style={styles.subLink}
         onPress={() => {
-          console.log('Tapped');
+          navigation.navigate(routes.LOGIN);
         }}
       >
-        Cansel recovery?
+        Cansel recovery
       </AppLink>
     </Screen>
   );
 }
-
-const styles = StyleSheet.create({
-  ...formScreenStyles,
-});

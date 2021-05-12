@@ -1,18 +1,31 @@
 import React from 'react';
 import Constants from 'expo-constants';
-import { StyleSheet, View } from 'react-native';
+import {
+  Platform,
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  View,
+} from 'react-native';
 
 import colors from '../config/colors';
 
 export default function Screen({ children, style }) {
-  return <View style={[styles.screen, style]}>{children}</View>;
+  return (
+    <SafeAreaView style={styles.screen}>
+      <ScrollView>
+        <View style={[styles.container, style]}>{children}</View>
+      </ScrollView>
+    </SafeAreaView>
+  );
 }
 
 const styles = StyleSheet.create({
   screen: {
     backgroundColor: colors.primary,
-    flex: 1,
-    padding: 20,
-    paddingTop: Constants.statusBarHeight,
+  },
+  container: {
+    paddingTop: Platform.OS !== 'ios' ? Constants.statusBarHeight : null,
+    paddingHorizontal: 20,
   },
 });
