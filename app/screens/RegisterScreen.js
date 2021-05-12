@@ -11,7 +11,7 @@ import Screen from '../components/Screen';
 import usePostApi from '../hooks/usePostApi';
 import UploadScreen from './UploadScreen';
 
-import { formScreenStyles as styles } from '../config/styles';
+import { screenStyles as styles } from '../config/styles';
 import routes from '../navigation/routes';
 import {
   firstName,

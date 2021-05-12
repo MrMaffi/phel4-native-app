@@ -13,7 +13,7 @@ import Screen from '../components/Screen';
 import usePostApi from '../hooks/usePostApi';
 import UploadScreen from './UploadScreen';
 
-import { formScreenStyles as styles } from '../config/styles';
+import { screenStyles as styles } from '../config/styles';
 
 const validationSchema = Yup.object().shape({
   code: Yup.string()
@@ -52,8 +52,7 @@ export default function ConfirmScreen({ navigation, route }) {
     if (route?.params?.from === 'Recover') {
       Notifications.presentLocalNotificationAsync({
         title: 'Code!',
-        body:
-          'You can input whatever code you want, remember this feature is in development. Don`t wait for code in your mailbox!',
+        body: 'You can input whatever code you want, remember this feature is in development. Don`t wait for code in your mailbox!',
       });
     }
   }, []);
@@ -93,8 +92,7 @@ export default function ConfirmScreen({ navigation, route }) {
               )
             : Notifications.presentLocalNotificationAsync({
                 title: 'Check your mailbox!',
-                body:
-                  'Your new code must be there. If it doesn`t check your email input and try again.',
+                body: 'Your new code must be there. If it doesn`t check your email input and try again.',
               });
         }}
       >

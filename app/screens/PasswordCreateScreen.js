@@ -7,7 +7,7 @@ import AppText from '../components/AppText';
 import AppTitle from '../components/AppTitle';
 import Screen from '../components/Screen';
 
-import { formScreenStyles as styles } from '../config/styles';
+import { screenStyles as styles } from '../config/styles';
 import routes from '../navigation/routes';
 import { newPassword, confirmPassword } from '../config/formFieldsProps';
 import { Alert } from 'react-native';

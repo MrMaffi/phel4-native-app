@@ -13,7 +13,7 @@ import usePostApi from '../hooks/usePostApi';
 import UploadScreen from './UploadScreen';
 
 import { email, password } from '../config/formFieldsProps';
-import { formScreenStyles as styles } from '../config/styles';
+import { screenStyles as styles } from '../config/styles';
 import routes from '../navigation/routes';
 
 const validationSchema = Yup.object().shape({
@@ -89,7 +89,7 @@ export default function LoginScreen({ navigation, route }) {
       >
         Sign up?
       </AppLink>
-      <AppTitle style={styles.header}>Log in</AppTitle>
+      <AppText style={styles.header}>Log in</AppText>
       <AppTitle style={styles.title}>Welcome back</AppTitle>
       <AppText style={styles.subTitle}>Please log in</AppText>
       <AppForm

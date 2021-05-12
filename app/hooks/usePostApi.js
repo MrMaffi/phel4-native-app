@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Alert } from 'react-native';
 
-export default usePostApi = (apiFunc) => {
+export default usePostApi = apiFunc => {
   const [uploadVisible, setUploadVisible] = useState(false);
   const [progress, setProgress] = useState(0);
 

@@ -8,7 +8,7 @@ import AppTitle from '../components/AppTitle';
 import Screen from '../components/Screen';
 
 import { email } from '../config/formFieldsProps';
-import { formScreenStyles as styles } from '../config/styles';
+import { screenStyles as styles } from '../config/styles';
 import routes from '../navigation/routes';
 
 const validationSchema = Yup.object().shape({
